@@ -12,8 +12,10 @@ import sqlite3
 import time
 
 if __name__ == "__main__":
-    select_sql = "select * from '091120'"
-    analyze_db_name = "a122870" #yg
+
+    # yg
+    select_sql = "select * from '122870'"
+    analyze_db_name = "a122870"
 
     start_time = time.time()
 

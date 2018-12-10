@@ -140,7 +140,7 @@ class Kiwoom(QAxWidget):
 if __name__ == "__main__":
 
     dt = "20181116"
-    jCode = "035900"
+    jCode = "122870" #yg
 
     app = QApplication(sys.argv)
     kiwoom = Kiwoom()

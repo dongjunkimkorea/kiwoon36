@@ -16,6 +16,8 @@ from numpy import arange
 
 import matplotlib.ticker as ticker
 
+select_sql = "SELECT * FROM a041510"
+
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -23,7 +25,7 @@ class MyWindow(QMainWindow):
     def display3(self):
 
         con = sqlite3.connect("c:/db/kosdap.db")
-        df = pd.read_sql("SELECT * FROM d091120", con, index_col='index')
+        df = pd.read_sql(select_sql, con, index_col='index')
         df = df.sort_values(by=['col0_date'])
 
         pd.to_datetime(df['col0_date'])
