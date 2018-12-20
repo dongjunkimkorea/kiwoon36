@@ -13,11 +13,11 @@ dlg = timings.wait_until_passes(20, 0.5, lambda: app.connect(title=title)).Dialo
 pass_ctrl = dlg.Edit2
 time.sleep(10)
 pass_ctrl.set_focus()
-pass_ctrl.type_keys("k7d6j720")
+pass_ctrl.type_keys("")
 
 cert_ctrl = dlg.Edit3
 cert_ctrl.set_focus()
-cert_ctrl.type_keys('rlaehdwns20180520!')
+cert_ctrl.type_keys('')
 
 btn_ctrl = dlg.Button0
 btn_ctrl.click()

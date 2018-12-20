@@ -14,18 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="display041510.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/display041510.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="display035900.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/display035900.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -35,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kiwoom.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kiwoom.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Kiwoom.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="590">
@@ -47,11 +35,29 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="module_1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module_1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="module_2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/module_2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1088">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="pytrader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pytrader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-791">
-              <caret line="64" column="64" lean-forward="true" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
+            <state relative-caret-position="2006">
+              <caret line="64" column="64" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -73,30 +79,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
               <caret line="21" column="55" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12070">
-              <caret line="371" column="18" selection-start-line="371" selection-start-column="18" selection-end-line="371" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot122870.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot122870.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10064">
-              <caret line="312" column="36" selection-start-line="312" selection-start-column="36" selection-end-line="312" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -171,10 +153,13 @@
         <option value="$PROJECT_DIR$/plot035900.py" />
         <option value="$PROJECT_DIR$/pytrader.py" />
         <option value="$PROJECT_DIR$/Kiwoom.py" />
+        <option value="$PROJECT_DIR$/../bookMaster36/ch19 실전 프로그램 개발(2) (revision)/day05/buy_list.txt" />
+        <option value="$PROJECT_DIR$/module_1.py" />
+        <option value="$PROJECT_DIR$/module_2.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="751" />
     <option name="y" value="270" />
     <option name="width" value="2222" />
@@ -225,6 +210,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="l&#9;FILE&#9;file://C:/Projects/bookMaster36/ch19 실전 프로그램 개발(2) (revision)/day05/buy_list.txt" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bookMaster36" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyDependenciesConfigurable" />
   </component>
@@ -250,7 +236,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Kiwoom">
+  <component name="RunManager" selected="Python.module_2">
     <configuration name="Kiwoom" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="kiwoon36" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -287,6 +273,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="module_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="kiwoon36" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/module_2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="plot035900" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="kiwoon36" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -300,24 +304,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot035900.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="plot041510" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="kiwoon36" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot041510.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -343,18 +329,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.display035900" />
-      <item itemvalue="Python.plot041510" />
       <item itemvalue="Python.plot035900" />
       <item itemvalue="Python.pytrader" />
       <item itemvalue="Python.Kiwoom" />
+      <item itemvalue="Python.module_2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.module_2" />
         <item itemvalue="Python.Kiwoom" />
         <item itemvalue="Python.pytrader" />
         <item itemvalue="Python.display035900" />
         <item itemvalue="Python.plot035900" />
-        <item itemvalue="Python.plot041510" />
       </list>
     </recent_temporary>
   </component>
@@ -384,15 +370,15 @@
     <frame x="-13" y="-13" width="5146" height="2826" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49078727" visible="true" weight="0.09439587" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49032688" visible="true" weight="0.18124007" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32983276" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.044140626" side_tool="true" weight="0.47726405" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32983276" />
       <window_info anchor="bottom" x="484" y="1348" width="5032" height="999" id="Python Console" order="10" sideWeight="0.95585936" weight="0.4371069" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49880952" visible="true" weight="0.28860366" />
-      <window_info id="Structure" order="1" sideWeight="0.50921273" side_tool="true" weight="0.41442543" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49880952" visible="true" weight="0.4169584" />
+      <window_info id="Structure" order="1" sideWeight="0.5096731" side_tool="true" visible="true" weight="0.18124007" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49960938" weight="0.32893082" />
       <window_info id="Favorites" order="2" sideWeight="0.50921273" side_tool="true" weight="0.41442543" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -409,27 +395,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/display.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="72" column="41" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autorun.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/interFace.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2703">
@@ -763,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pytrader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-791">
-          <caret line="64" column="64" lean-forward="true" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
+        <state relative-caret-position="2006">
+          <caret line="64" column="64" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -778,6 +743,27 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bookMaster36/ch19 실전 프로그램 개발(2) (revision)/day05/buy_list.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="15" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="21" />
         </state>
       </provider>
     </entry>
