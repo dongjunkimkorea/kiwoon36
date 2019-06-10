@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>2180</width>
-    <height>1012</height>
+    <height>1638</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PyTrader v0.3</string>
+   <string>PyTrader v0.4</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -308,7 +308,7 @@
       <x>490</x>
       <y>30</y>
       <width>1661</width>
-      <height>901</height>
+      <height>881</height>
      </rect>
     </property>
     <property name="title">
@@ -429,6 +429,59 @@
      <property name="text">
       <string>조회</string>
      </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>940</y>
+      <width>1660</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>자동 선정 종목 리스트</string>
+    </property>
+    <widget class="QTableWidget" name="tableWidget_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>1621</width>
+       <height>521</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>새 행</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>주문유형</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>종목명</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>호가구분</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>수량</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>상태</string>
+      </property>
+     </column>
     </widget>
    </widget>
   </widget>

@@ -14,11 +14,11 @@ TR_REQ_TIME_INTERVAL = 0.2
 
 
 class Kiwoom(QAxWidget):
-    def __init__(self):
+    def __init__(self, jCode):
         super().__init__()
         self._create_kiwoom_instance()
         self._set_signal_slots()
-
+        self.jCode = jCode
     def _create_kiwoom_instance(self):
         self.setControl("KHOPENAPI.KHOpenAPICtrl.1")
 
@@ -102,69 +102,75 @@ class Kiwoom(QAxWidget):
             col2 = self._get_comm_data(trcode, "종목별투자자기관별", i, "대비기호")
             col3 = self._get_comm_data(trcode, "종목별투자자기관별", i, "전일대비")
             col4 = self._get_comm_data(trcode, "종목별투자자기관별", i, "등락율")
-            col5 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래대금")
-            col6 = self._get_comm_data(trcode, "종목별투자자기관별", i, "개인투자자")
-            col7 = self._get_comm_data(trcode, "종목별투자자기관별", i, "외국인투자자")
-            col8 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기관계")
-            col9 = self._get_comm_data(trcode, "종목별투자자기관별", i, "금융투자")
-            col10 = self._get_comm_data(trcode, "종목별투자자기관별", i, "보험")
-            col11 = self._get_comm_data(trcode, "종목별투자자기관별", i, "투신")
-            col12 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타금융")
-            col13 = self._get_comm_data(trcode, "종목별투자자기관별", i, "은행")
-            col14 = self._get_comm_data(trcode, "종목별투자자기관별", i, "연기금등")
-            col15 = self._get_comm_data(trcode, "종목별투자자기관별", i, "사모펀드")
-            col16 = self._get_comm_data(trcode, "종목별투자자기관별", i, "국가")
-            col17 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타법인")
-            col18 = self._get_comm_data(trcode, "종목별투자자기관별", i, "내외국인")
+            col5 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래량")
+            col6 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래대금")
+            col7 = self._get_comm_data(trcode, "종목별투자자기관별", i, "개인투자자")
+            col8 = self._get_comm_data(trcode, "종목별투자자기관별", i, "외국인투자자")
+            col9 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기관계")
+            col10 = self._get_comm_data(trcode, "종목별투자자기관별", i, "금융투자")
+            col11 = self._get_comm_data(trcode, "종목별투자자기관별", i, "보험")
+            col12 = self._get_comm_data(trcode, "종목별투자자기관별", i, "투신")
+            col13 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타금융")
+            col14 = self._get_comm_data(trcode, "종목별투자자기관별", i, "은행")
+            col15 = self._get_comm_data(trcode, "종목별투자자기관별", i, "연기금등")
+            col16 = self._get_comm_data(trcode, "종목별투자자기관별", i, "사모펀드")
+            col17 = self._get_comm_data(trcode, "종목별투자자기관별", i, "국가")
+            col18 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타법인")
+            col19 = self._get_comm_data(trcode, "종목별투자자기관별", i, "내외국인")
 
-            self.s0796['col0'].append(col0)
-            self.s0796['col1'].append(int(col1))
-            self.s0796['col2'].append(int(col2))
-            self.s0796['col3'].append(int(col3))
-            self.s0796['col4'].append(float(col4))
-            self.s0796['col5'].append(int(col5))
-            self.s0796['col6'].append(int(col6))
-            self.s0796['col7'].append(int(col7))
-            self.s0796['col8'].append(int(col8))
-            self.s0796['col9'].append(int(col9))
-            self.s0796['col10'].append(int(col10))
-            self.s0796['col11'].append(int(col11))
-            self.s0796['col12'].append(int(col12))
-            self.s0796['col13'].append(int(col13))
-            self.s0796['col14'].append(int(col14))
-            self.s0796['col15'].append(int(col15))
-            self.s0796['col16'].append(int(col16))
-            self.s0796['col17'].append(int(col17))
-            self.s0796['col18'].append(int(col18))
+            self.s0796['종목코드'].append(self.jCode)
+
+            self.s0796['일자'].append(col0)
+            self.s0796['현재가'].append(abs(int(col1)))
+            self.s0796['대비기호'].append(int(col2))
+            self.s0796['전일대비'].append(int(col3))
+            self.s0796['등락율'].append(float(col4))
+            self.s0796['누적거래량'].append(int(col5))
+            self.s0796['누적거래대금'].append(int(col6))
+            self.s0796['개인투자자'].append(int(col7))
+            self.s0796['외국인투자자'].append(int(col8))
+            self.s0796['기관계'].append(int(col9))
+            self.s0796['금융투자'].append(int(col10))
+            self.s0796['보험'].append(int(col11))
+            self.s0796['투신'].append(int(col12))
+            self.s0796['기타금융'].append(int(col13))
+            self.s0796['은행'].append(int(col14))
+            self.s0796['연기금등'].append(int(col15))
+            self.s0796['사모펀드'].append(int(col16))
+            self.s0796['국가'].append(int(col17))
+            self.s0796['기타법인'].append(int(col18))
+            self.s0796['내외국인'].append(int(col19))
 
 if __name__ == "__main__":
 
-    dt = "20181116"
+    dt = "20190306"
     jCode = "035900"
 
     app = QApplication(sys.argv)
-    kiwoom = Kiwoom()
+    kiwoom = Kiwoom(jCode)
     kiwoom.comm_connect()
 
-    kiwoom.s0796 = {'col0': [],
-                    'col1': [],
-                    'col2': [],
-                    'col3': [],
-                    'col4': [],
-                    'col5': [],
-                    'col6': [],
-                    'col7': [],
-                    'col8': [],
-                    'col9': [],
-                    'col10': [],
-                    'col11': [],
-                    'col12': [],
-                    'col13': [],
-                    'col14': [],
-                    'col15': [],
-                    'col16': [],
-                    'col17': [],
-                    'col18': []}
+    kiwoom.s0796 = {'종목코드': [],
+                    '일자': [],
+                    '현재가': [],
+                    '대비기호': [],
+                    '전일대비': [],
+                    '등락율': [],
+                    '누적거래량': [],
+                    '누적거래대금': [],
+                    '개인투자자': [],
+                    '외국인투자자': [],
+                    '기관계': [],
+                    '금융투자': [],
+                    '보험': [],
+                    '투신': [],
+                    '기타금융': [],
+                    '은행': [],
+                    '연기금등': [],
+                    '사모펀드': [],
+                    '국가': [],
+                    '기타법인': [],
+                    '내외국인': []}
 
     # opt10059 TR 요청
     kiwoom.set_input_value("일자", dt)
@@ -197,8 +203,18 @@ if __name__ == "__main__":
         kiwoom.set_input_value("단위구분", "1")
         kiwoom.comm_rq_data("opt10059_req", "opt10059", 2, "0796")
 
-    df = pd.DataFrame(kiwoom.s0796, columns=['col0','col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8', 'col9', 'col10', 'col11', 'col12', 'col13', 'col14', 'col15', 'col16', 'col17', 'col18'], index=kiwoom.s0796['col0'])
-
+    #df = pd.DataFrame(kiwoom.s0796, columns=['종목코드','일자','현재가', '대비기호', '전일대비', '등락율', '누적거래대금', '개인투자자', '외국인투자자', '기관계', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인'], index=kiwoom.s0796['일자'])
+    # columns 는 사용안해도 됌. kiwoom.s0796 의 데이터구조에 컬럼(header에 해당하는 명칭)이 이미 있기때문. 테스트 해 봤음.
+    # DataFrame 은 index=None 으로 설정 되 있기 때문에, RangeIndex 가 생긴다.
+    # index=index=kiwoom.s0796['일자'] 로 설정하면 '일자'가 index로 설정됌.
+    
+    # 아래 clolumns 를 명시적으로 사용한것은, 어떤 컬럼이 저장되는 컬럼인지 명시적으로 인지 하기 위하여 기술하였음.
+    df = pd.DataFrame(kiwoom.s0796
+                      ,columns=['종목코드', '일자', '현재가', '대비기호', '전일대비', '등락율', '누적거래량', '누적거래대금', '개인투자자', '외국인투자자', '기관계', '금융투자',
+                               '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']
+                      )
 
     con = sqlite3.connect("c:/db/kosdap.db")
-    df.to_sql(jCode, con, if_exists='replace')
+    
+    # index=False, DataFrame 의 index를 저장하지 않음.
+    df.to_sql("TR_DATA_OPT10059", con, if_exists='replace', index=False)

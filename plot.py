@@ -28,7 +28,10 @@ class MyWindow(QMainWindow):
 
         pd.to_datetime(df['col0_date'])
 
+        print("================start")
+        print(df.info())
         print(df)
+        print("=================end")
 
         plt.rcParams['axes.grid'] = True
         fig = plt.figure(figsize=(55, 10))
