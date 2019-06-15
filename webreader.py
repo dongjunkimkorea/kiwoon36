@@ -29,36 +29,63 @@ import datetime
 # print(years[3:7])
 # print(dividend)
 
-# what.현금배당수익률[과거/어제.즉현재]
+# what.(과거)현금배당수익률[과거/어제.즉현재][상단]
 # where.네이버.상단(WISEFn제공).기업현황.현금배당수익률
 # return str.dividend_yield 조회시점의 현금배당수익률(최근 결산 수정DPS(현금)_과거 / 전일자 보통주 수정주가_어제)
 # def.name.배당 수익률을 얻다.
 # str.dividend_yield.배당수익률
 def get_dividend_yield(code):
     url = "https://navercomp.wisereport.co.kr/v2/company/c1010001.aspx?cmp_cd=" + code + "&cn="
-
     html = requests.get(url).text
+
     soup = BeautifulSoup(html, 'html5lib')
 
     # coyp js path
-    b = soup.select("#pArea > div.wrapper-table > div > table > tbody > tr:nth-child(3) > td > dl > dt:nth-child(6) > b")
+    b_tag_data = soup.select("#pArea > div.wrapper-table > div > table > tbody > tr:nth-child(3) > td > dl > dt:nth-child(6) > b")
 
-    dividend_yield = b[0].text
+    if not b_tag_data :
+        return ""
+
+    dividend_yield = b_tag_data[0].text
     dividend_yield = dividend_yield[:-1]
 
     return dividend_yield
 
-# what.예상 현금배당수익률[컨센서스]
+# what.(예상)현금배당수익률[컨센서스][재무제표상 컨센서스]
 # where.함수에서.def get_financial_statements(code)
 # return 해당년도예상수익률(컨센서스) , 제무재표에서 해당년도 예상수익률을 구한다.
 # def.name.예상 배당 수익률을 얻는다.
 def get_estimated_dividend_yield(code):
-    dividend_yield = get_financial_statements(code)
-    # print(sorted(dividend_yield.items()))
-    # print(sorted(dividend_yield.items())[-1])
-    dividend_yield = sorted(dividend_yield.items())[-1]
 
-    return dividend_yield[1]
+    estimated_dividend_yield = 0
+
+    dividend_yield = get_financial_statements(code)
+    # 해당 연도 및 이전 연도에 데이터(현금배당률 DPS)가 존재하는지 확인
+    # ETF 는 데이터 없음.
+    if len(dividend_yield) == 0:
+        return "0"
+
+    sorded_dividend_yield = sorted(dividend_yield.items())
+
+    # print(sorded_dividend_yield)
+    # print(sorded_dividend_yield[-1])
+    # print(sorded_dividend_yield[-1][1])
+
+    if len(sorded_dividend_yield[-1][1]) == 0 :
+        estimated_dividend_yield = sorded_dividend_yield[-2][1]
+
+        if len(estimated_dividend_yield) == 0 :
+            estimated_dividend_yield = sorded_dividend_yield[-3][1]
+
+            if len(estimated_dividend_yield) == 0 :
+                estimated_dividend_yield = sorded_dividend_yield[-4][1]
+    else :
+        estimated_dividend_yield = sorded_dividend_yield[-1][1]
+
+    if estimated_dividend_yield == "" :
+        estimated_dividend_yield = 0
+
+    return estimated_dividend_yield
 
 # what.현금배당수익률 목록
 # where.네이버.하단(WISEFn제공).재무제표전체TAB.현금배당수익률.row
@@ -126,7 +153,7 @@ def get_current_3year_treasury():
     return td_data[0].text
 
 # what.4년간 수익률
-# 참조.최근 마지막 수익률은 당해년도 추정치 수익률임.
+# 직전최신3년수익률 + 현재시점컨센서스수익률1년
 def get_previous_dividend_yield(code):
     dividend_yield = get_financial_statements(code)
 
@@ -141,8 +168,23 @@ def get_previous_dividend_yield(code):
 
     for year in range(cur_year-3, cur_year+1):
         # print("year:", year)
-        if "y/"+str(year)+"/12" in dividend_yield.keys():
+        # 결산월
+        if "y/"+str(year)+"/03" in dividend_yield.keys() :
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/03"]
+        if "y/"+str(year)+"/06" in dividend_yield.keys() :
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/06"]
+        if "y/"+str(year)+"/09" in dividend_yield.keys() :
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/09"]
+        if "y/"+str(year)+"/12" in dividend_yield.keys() :
             previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/12"]
+
+        # 결산월
+        if "y/"+str(year)+"/03(E)" in dividend_yield.keys():
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/03(E)"]
+        if "y/"+str(year)+"/06(E)" in dividend_yield.keys():
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/06(E)"]
+        if "y/"+str(year)+"/09(E)" in dividend_yield.keys():
+            previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/09(E)"]
         if "y/"+str(year)+"/12(E)" in dividend_yield.keys():
             previous_dividend_yield[year] = dividend_yield["y/"+str(year)+"/12(E)"]
     return previous_dividend_yield
@@ -178,26 +220,36 @@ def get_3year_treasury():
 
 if __name__ == "__main__":
 
-    jong_mok_code = "058470"
+    # jong_mok_code = "058470"
+    jong_mok_code = "069460"
 
     print("=========================================================")
     print("종목 : " + jong_mok_code)
 
+    print("==================================================================================================================")
+    estimated_dividend_yield = get_estimated_dividend_yield(jong_mok_code)
+    print("what.(예상) 현금배당수익률[컨센서스]")
+    print(estimated_dividend_yield )
+
     print("=========================================================")
     dividend_yield = get_dividend_yield(jong_mok_code)
-    print("what.현금배당수익률[과거/어제]")
+    print("what.(이전) 현금배당수익률[과거/어제]")
     print(dividend_yield)
 
     print("==================================================================================================================")
-    dividend_dict = get_financial_statements(jong_mok_code)
-    print("what.현금배당수익률 목록")
-    print(dividend_dict)
+    print("what.(최근4년) =  현금배당수익률(최근3년) + 현금배당수익룰(컨센서스)")
+    previous_dividend_yield = get_previous_dividend_yield(jong_mok_code)
+    print(previous_dividend_yield)
 
     print("==================================================================================================================")
-    estimated_dividend_yield = get_estimated_dividend_yield(jong_mok_code)
-    print("what.예상 현금배당수익률[컨센서스]")
-    print(estimated_dividend_yield )
+    dividend_dict = get_financial_statements(jong_mok_code)
+    print("what.(과거) 현금배당수익률 목록")
+    print(dividend_dict)
 
+    print("")
+    print("")
+    print("==================================================================================================================")
+    print("Infomation")
     print("==================================================================================================================")
     year_treasury_dict = get_3year_treasury()
     print("what.3년만기국채수익률 목록")
@@ -206,8 +258,3 @@ if __name__ == "__main__":
     print("==================================================================================================================")
     print("what.3년 만기 국채 수익률의 일별 시세")
     print(get_current_3year_treasury())
-
-    print("==================================================================================================================")
-    print("what.4년간 수익률")
-    previous_dividend_yield = get_previous_dividend_yield(jong_mok_code)
-    print(previous_dividend_yield)
