@@ -19,7 +19,7 @@ pythader.py 실행 후 키움 Open API++ 로그인 팝업이 뜬 경우.
     로그인 후, 계좌비밀번호 변경 아이콘을 클릭 후, 나머지 설정을 위와 같은 방법으로 진행한다.
 """
 
-
+ 
 ###
 import sys
 from PyQt5.QtWidgets import *
