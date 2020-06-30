@@ -115,59 +115,55 @@ class Kiwoom(QAxWidget):
             col17 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타법인")
             col18 = self._get_comm_data(trcode, "종목별투자자기관별", i, "내외국인")
 
-            self.s0796['col0'].append(col0)
-            self.s0796['col1'].append(int(col1))
-            self.s0796['col2'].append(int(col2))
-            self.s0796['col3'].append(int(col3))
-            self.s0796['col4'].append(float(col4))
-            self.s0796['col5'].append(int(col5))
-            self.s0796['col6'].append(int(col6))
-            self.s0796['col7'].append(int(col7))
-            self.s0796['col8'].append(int(col8))
-            self.s0796['col9'].append(int(col9))
-            self.s0796['col10'].append(int(col10))
-            self.s0796['col11'].append(int(col11))
-            self.s0796['col12'].append(int(col12))
-            self.s0796['col13'].append(int(col13))
-            self.s0796['col14'].append(int(col14))
-            self.s0796['col15'].append(int(col15))
-            self.s0796['col16'].append(int(col16))
-            self.s0796['col17'].append(int(col17))
-            self.s0796['col18'].append(int(col18))
+            self.s0796['일자'].append(col0)
+            self.s0796['현재가'].append(int(col1))
+            self.s0796['대비기호'].append(int(col2))
+            self.s0796['전일대비'].append(int(col3))
+            self.s0796['등락율'].append(float(col4))
+            self.s0796['누적거래대금'].append(int(col5))
+            self.s0796['개인투자자'].append(int(col6))
+            self.s0796['외국인투자자'].append(int(col7))
+            self.s0796['기관계'].append(int(col8))
+            self.s0796['금융투자'].append(int(col9))
+            self.s0796['보험'].append(int(col10))
+            self.s0796['투신'].append(int(col11))
+            self.s0796['기타금융'].append(int(col12))
+            self.s0796['은행'].append(int(col13))
+            self.s0796['연기금등'].append(int(col14))
+            self.s0796['사모펀드'].append(int(col15))
+            self.s0796['국가'].append(int(col16))
+            self.s0796['기타법인'].append(int(col17))
+            self.s0796['내외국인'].append(int(col18))
 
-class InterFace():
-    def __init__(self):
-        pass
 
-    def get
 if __name__ == "__main__":
 
-    dt = "20200607"
+    dt = "20200403"
     jCode = "060250"
 
     app = QApplication(sys.argv)
     kiwoom = Kiwoom()
     kiwoom.comm_connect()
 
-    kiwoom.s0796 = {'col0': [],
-                    'col1': [],
-                    'col2': [],
-                    'col3': [],
-                    'col4': [],
-                    'col5': [],
-                    'col6': [],
-                    'col7': [],
-                    'col8': [],
-                    'col9': [],
-                    'col10': [],
-                    'col11': [],
-                    'col12': [],
-                    'col13': [],
-                    'col14': [],
-                    'col15': [],
-                    'col16': [],
-                    'col17': [],
-                    'col18': []}
+    kiwoom.s0796 = {'일자': [],
+                    '현재가': [],
+                    '대비기호': [],
+                    '전일대비': [],
+                    '등락율': [],
+                    '누적거래대금': [],
+                    '개인투자자': [],
+                    '외국인투자자': [],
+                    '기관계': [],
+                    '금융투자': [],
+                    '보험': [],
+                    '투신': [],
+                    '기타금융': [],
+                    '은행': [],
+                    '연기금등': [],
+                    '사모펀드': [],
+                    '국가': [],
+                    '기타법인': [],
+                    '내외국인': []}
 
     # opt10059 TR 요청
     kiwoom.set_input_value("일자", dt)
@@ -208,9 +204,8 @@ if __name__ == "__main__":
         kiwoom.comm_rq_data("opt10059_req", "opt10059", 2, "0796")
 
     df = pd.DataFrame(kiwoom.s0796,
-                      columns=['col0', 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8', 'col9', 'col10',
-                               'col11', 'col12', 'col13', 'col14', 'col15', 'col16', 'col17', 'col18'],
-                      index=kiwoom.s0796['col0'])
+                      columns=['일자', '현재가', '대비기호', '전일대비', '등락율', '누적거래대금', '개인투자자', '외국인투자자', '기관계', '금융투자', '보험',
+                               '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인'], index=kiwoom.s0796['일자'])
 
     con = sqlite3.connect("c:/db/kosdap.db")
-    df.to_sql(jCode, con, if_exists='replace')
+    df.to_sql(jCode, con, if_exists='replace', index=False)

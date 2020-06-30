@@ -34,7 +34,6 @@ class Kiwoom(QAxWidget):
         self.login_event_loop = QEventLoop()
         self.login_event_loop.exec_()
 
-    # todo. 7에러코드표 반영해야 함.
     def _event_connect(self, err_code):
         if err_code == 0:
             print("connected")
@@ -95,26 +94,11 @@ class Kiwoom(QAxWidget):
         return ret
     """ 주문 end """
 
-    """
-    OpenAPI.KOA_Functions(_T("GetServerGubun"), _T(""));// 접속서버 구분을 알려준다. 1 : 모의투자 접속, 나머지 : 실서버 접속 
-    """
     def get_server_gubun(self):
         ret = self.dynamicCall("KOA_Functions(QString, QString)", "GetServerGubun", "")
-        if(ret == '1'):
-            print('모의투자서버_접속')
-        else :
-            print('실서버_접속')
         return ret
 
     def _receive_tr_data(self, screen_no, rqname, trcode, record_name, next, unused1, unused2, unused3, unused4):
-
-        print('def _receive_tr_data')
-        print('     rqname : ', rqname)
-        print('     trcode : ', trcode)
-        print('     record_name : ', record_name)
-        print('     next : ', next)
-        print('     screen_no : ', screen_no)
-
         if next == '2':
             self.remained_data = True
         else:
@@ -126,7 +110,9 @@ class Kiwoom(QAxWidget):
             self._opw00001(rqname, trcode)
         elif rqname == "opw00018_req":
             self._opw00018(rqname, trcode)
-
+        elif rqname == "opt10059_req":
+            self._opt10059(rqname, trcode)
+			
         try:
             self.tr_event_loop.exit()
         except AttributeError:
@@ -162,7 +148,8 @@ class Kiwoom(QAxWidget):
     def _opw00001(self, rqname, trcode):
         d2_deposit = self._comm_get_data(trcode, "", rqname, 0, "d+2추정예수금")
         self.d2_deposit = Kiwoom.change_format2(d2_deposit)
-
+        print('d2_deposit===>', d2_deposit)
+        
     # 조회 정보 요청 : GetCommData()
     def _get_comm_data(self, trCode, recordName, index, itemName):
         """
@@ -204,17 +191,11 @@ class Kiwoom(QAxWidget):
     def reset_opw00018_output(self):
         self.opw00018_output = {'single': [], 'multi': []}
 
-    def _opw00018_test(self, rqname, trcode):
-        single = self._get_repeat_cnt(trcode, "계좌평가결과")
-        nulti = self._get_repeat_cnt(trcode, "계좌평가잔고개별합산")
-        print("single m", single, nulti)
-
     def _opw00018(self, rqname, trcode):
-
         # single data
         total_purchase_price = self._comm_get_data(trcode, "", rqname, 0, "총매입금액")
         total_eval_price = self._comm_get_data(trcode, "", rqname, 0, "총평가금액")
-        total_eval_profit_loss_price = self._comm_get_data(trcode, 0, rqname, 0, "총평가손익금액")
+        total_eval_profit_loss_price = self._comm_get_data(trcode, "", rqname, 0, "총평가손익금액")
         total_earning_rate = self._comm_get_data(trcode, "", rqname, 0, "총수익률(%)")
         estimated_deposit = self._comm_get_data(trcode, "", rqname, 0, "추정예탁자산")
 
@@ -234,10 +215,6 @@ class Kiwoom(QAxWidget):
         self.opw00018_output['single'].append(total_earning_rate)
 
         self.opw00018_output['single'].append(Kiwoom.change_format2(estimated_deposit))
-
-        print('======kdj>',total_earning_rate)
-        name1 = self._comm_get_data(trcode, "", rqname, 0, "종목명")
-        print('name1==>',name1)
 
         # multi data
         rows = self._get_repeat_cnt(trcode, rqname)
@@ -265,7 +242,50 @@ class Kiwoom(QAxWidget):
         print("_set_real_reg")
         ret = self.dynamicCall("SetRealReg(QString, QString, QString, QString)", '0099',
                                '035900', "9001;302;10;11;25;12;13", "0")
+							   
+    def _opt10059(self, rqname, trcode):
+        data_cnt = self._get_repeat_cnt(trcode, rqname)
 
+        for i in range(data_cnt):
+            col0 = self._get_comm_data(trcode, "종목별투자자기관별", i, "일자")
+            col1 = self._get_comm_data(trcode, "종목별투자자기관별", i, "현재가")
+            col2 = self._get_comm_data(trcode, "종목별투자자기관별", i, "대비기호")
+            col3 = self._get_comm_data(trcode, "종목별투자자기관별", i, "전일대비")
+            col4 = self._get_comm_data(trcode, "종목별투자자기관별", i, "등락율")
+            col5 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래대금")
+            col6 = self._get_comm_data(trcode, "종목별투자자기관별", i, "개인투자자")
+            col7 = self._get_comm_data(trcode, "종목별투자자기관별", i, "외국인투자자")
+            col8 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기관계")
+            col9 = self._get_comm_data(trcode, "종목별투자자기관별", i, "금융투자")
+            col10 = self._get_comm_data(trcode, "종목별투자자기관별", i, "보험")
+            col11 = self._get_comm_data(trcode, "종목별투자자기관별", i, "투신")
+            col12 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타금융")
+            col13 = self._get_comm_data(trcode, "종목별투자자기관별", i, "은행")
+            col14 = self._get_comm_data(trcode, "종목별투자자기관별", i, "연기금등")
+            col15 = self._get_comm_data(trcode, "종목별투자자기관별", i, "사모펀드")
+            col16 = self._get_comm_data(trcode, "종목별투자자기관별", i, "국가")
+            col17 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기타법인")
+            col18 = self._get_comm_data(trcode, "종목별투자자기관별", i, "내외국인")
+
+            self.s0796['일자'].append(col0)
+            self.s0796['현재가'].append(int(col1))
+            self.s0796['대비기호'].append(int(col2))
+            self.s0796['전일대비'].append(int(col3))
+            self.s0796['등락율'].append(float(col4))
+            self.s0796['누적거래대금'].append(int(col5))
+            self.s0796['개인투자자'].append(int(col6))
+            self.s0796['외국인투자자'].append(int(col7))
+            self.s0796['기관계'].append(int(col8))
+            self.s0796['금융투자'].append(int(col9))
+            self.s0796['보험'].append(int(col10))
+            self.s0796['투신'].append(int(col11))
+            self.s0796['기타금융'].append(int(col12))
+            self.s0796['은행'].append(int(col13))
+            self.s0796['연기금등'].append(int(col14))
+            self.s0796['사모펀드'].append(int(col15))
+            self.s0796['국가'].append(int(col16))
+            self.s0796['기타법인'].append(int(col17))
+            self.s0796['내외국인'].append(int(col18))
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     kiwoom = Kiwoom()

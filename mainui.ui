@@ -6,31 +6,284 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>3634</width>
-    <height>1424</height>
+    <width>2560</width>
+    <height>1440</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>3591</width>
-      <height>1171</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,9">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,3">
+      <item>
+       <widget class="QListView" name="listView"/>
+      </item>
+      <item>
+       <widget class="QTreeView" name="treeView"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,4,4">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="sizeIncrement">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>GroupBox</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QDateEdit" name="dateEdit"/>
+         </item>
+         <item>
+          <widget class="QTimeEdit" name="timeEdit"/>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>600</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>800</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>800</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>800</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>매집량 분석표</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QTableWidget" name="tableWidget">
+              <column>
+               <property name="text">
+                <string>일자</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>평균단가</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>거래량</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>새 행</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>개인</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>세력하</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>외국인</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>금융투자</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>보험</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>투신</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>기타금융</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>은행</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>연기금</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>사모펀드</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>국가</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>내외국인</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>매집량 거래내역</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_2"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>매집량</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_3"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_5">
+         <attribute name="title">
+          <string>매집량 추세</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_4"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_2">
+         <attribute name="title">
+          <string>매집량 분포</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QTableWidget" name="tableWidget_5"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>3634</width>
+     <width>2560</width>
      <height>38</height>
     </rect>
    </property>

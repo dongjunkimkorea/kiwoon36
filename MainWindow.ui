@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2530</width>
+    <height>1440</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>18</y>
+      <width>2524</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>검색조건</string>
+    </property>
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>160</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="dateEdit_2">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>30</y>
+       <width>160</width>
+       <height>32</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>30</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1알</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>630</x>
+       <y>30</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1주</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>30</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1달</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_4">
+     <property name="geometry">
+      <rect>
+       <x>830</x>
+       <y>30</y>
+       <width>91</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1년</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>950</x>
+       <y>20</y>
+       <width>150</width>
+       <height>46</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>검색</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>800</y>
+      <width>2501</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>매집량 분석표</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>2491</width>
+        <height>521</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>매집량 거래내역</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>2491</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>일자</string>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>새 행</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>현재가</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>상승하락</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>전일비</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>등락률</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>거래량</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기관계</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금등</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>내외국인</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>매집량</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>2491</width>
+        <height>541</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>일자</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인'\n(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>개인(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(5일추세)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(20일추세)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인/기관(60일추세)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>외국인(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>금융투자(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>보험(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>투신(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타금융(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>은행(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>연기금(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>사모펀드(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>국가(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타법인(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타법인(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타법인(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타법인(매집고점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>기타법인(분산비율)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>내외국인(누적합계)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>내외국인(최고저점)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>내외국인(매집수량)</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>내외국인(분산비율)</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>매집량 추세</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>40</y>
+        <width>1561</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>새 행</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>주가</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>20일</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>매집량 분포</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>50</y>
+        <width>1871</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>새 행</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>주가</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>세력분산</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>2511</width>
+      <height>671</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2530</width>
+     <height>38</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

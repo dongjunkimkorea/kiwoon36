@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 form_class = uic.loadUiType("main_window.ui")[0]
 
 # yg
-select_sql = "SELECT * FROM a122870"
+select_sql = "SELECT * FROM a060250"
 
 # column_idx_lookup = {'col1_price': 0,
 #         'col6_sum': 1, 'col6_min': 2, 'col6_qty': 3, 'col6_max': 4, 'col6_rate': 5,

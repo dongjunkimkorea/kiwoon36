@@ -7,13 +7,14 @@ from PyQt5.QtWidgets import *
 from PyQt5.QAxContainer import *
 from PyQt5.QtCore import *
 import time
+
 import pandas as pd
 import sqlite3
 import time
 
 if __name__ == "__main__":
-    select_sql = "select * from '091120'"
-    analyze_db_name = "a122870" #yg
+    select_sql = "select * from '060250'"
+    analyze_db_name = "a060250" #nhn
 
     start_time = time.time()
 

@@ -23,7 +23,7 @@ class MyWindow(QMainWindow):
     def display3(self):
 
         con = sqlite3.connect("c:/db/kosdap.db")
-        df = pd.read_sql("SELECT * FROM d091120", con, index_col='index')
+        df = pd.read_sql("SELECT * FROM a005930", con, index_col='index')
         df = df.sort_values(by=['col0_date'])
 
         pd.to_datetime(df['col0_date'])
