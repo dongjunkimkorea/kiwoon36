@@ -245,7 +245,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -402,7 +402,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               </column>
               <column>
                <property name="text">
-                <string>거래량</string>
+                <string>거래대금</string>
                </property>
               </column>
               <column>
@@ -920,11 +920,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               </column>
               <column>
                <property name="text">
-                <string/>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string>세력매집추세
 주가</string>
                </property>
@@ -943,11 +938,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               </column>
               <column>
                <property name="text">
-                <string/>
-               </property>
-              </column>
-              <column>
-               <property name="text">
                 <string>세력분산비율추세
 주가</string>
                </property>
@@ -962,11 +952,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
                <property name="text">
                 <string>
 세력분산</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string/>
                </property>
               </column>
               <column>

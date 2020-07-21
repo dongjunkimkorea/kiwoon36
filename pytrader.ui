@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../Users/DongJun Kim/.designer/backup/icon.png</normaloff>../../Users/DongJun Kim/.designer/backup/icon.png</iconset>
+    <normaloff>../../Users/DongJun Kim/Users/DongJun Kim/.designer/backup/icon.png</normaloff>../../Users/DongJun Kim/Users/DongJun Kim/.designer/backup/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">

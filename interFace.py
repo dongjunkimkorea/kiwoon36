@@ -10,6 +10,7 @@ import time
 import pandas as pd
 import sqlite3
 
+
 TR_REQ_TIME_INTERVAL = 0.2
 
 
@@ -93,7 +94,7 @@ class Kiwoom(QAxWidget):
 
     def _opt10059(self, rqname, trcode):
         data_cnt = self._get_repeat_cnt(trcode, rqname)
-
+        # print('data_cnt =>' + data_cnt)
         for i in range(data_cnt):
             col0 = self._get_comm_data(trcode, "종목별투자자기관별", i, "일자")
             col1 = self._get_comm_data(trcode, "종목별투자자기관별", i, "현재가")
@@ -139,11 +140,10 @@ class InterFace():
     def __init__(self):
         pass
 
-    def get
 if __name__ == "__main__":
 
-    dt = "20200607"
-    jCode = "060250"
+    dt = "20200701"
+    jCode = "019170"
 
     app = QApplication(sys.argv)
     kiwoom = Kiwoom()
