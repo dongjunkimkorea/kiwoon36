@@ -74,7 +74,7 @@ class PurchaseVolumeAnalysis():
                         '대비기호': [],
                         '전일대비': [],
                         '등락율': [],
-                        '누적거래대금': [],
+                        '누적거래량': [],
                         '개인투자자': [],
                         '외국인투자자': [],
                         '기관계': [],
@@ -110,7 +110,7 @@ class PurchaseVolumeAnalysis():
             self.kiwoom.comm_rq_data("opt10059_req", "opt10059", 2, "0796")
 
         df = pd.DataFrame(self.kiwoom.s0796,
-                          columns=['일자', '현재가', '대비기호', '전일대비', '등락율', '누적거래대금', '개인투자자', '외국인투자자', '기관계', '금융투자', '보험',
+                          columns=['일자', '현재가', '대비기호', '전일대비', '등락율', '누적거래량', '개인투자자', '외국인투자자', '기관계', '금융투자', '보험',
                                    '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인'], index=self.kiwoom.s0796['일자'])
 
         con = sqlite3.connect("c:/db/kosdap.db")
@@ -129,7 +129,8 @@ class PurchaseVolumeAnalysis():
         for i in range(len(df.columns)):
             #print(column_idx_lookup[i])
             for j in range(len(df.index)):
-                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]))))
+#                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]))))
+                item: QTableWidgetItem = QTableWidgetItem(str(df[column_idx_lookup[i]][j]))
                 dpWidget.setItem(j, i, item)
                 item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 #print(df[column_idx_lookup[i]][j])
@@ -201,7 +202,7 @@ class PurchaseVolumeAnalysis():
         # DataFrame drop column
         # dfS0796 = dfS0796.drop(columns=["일자", "현재가", "대비기호", "전일대비", "등락율", "누적거래대금"])
         # 알아두기. 일자,현재가를 drop 하는 이유는 cumsum 이 숫자 데이터로 인식하여 계산을 하기 때문이다. 그래서 뺀다.
-        dfS0796 = dfS0796.drop(columns=["일자","현재가","대비기호", "전일대비", "등락율", "누적거래대금"])
+        dfS0796 = dfS0796.drop(columns=["일자","현재가","대비기호", "전일대비", "등락율", "누적거래량"])
 
         print('>>> getAccAmt()  >>>  분석 DataFrame 생성 >>> 누적합계 --------------------------------------------------')
         
@@ -534,8 +535,8 @@ class PurchaseVolumeAnalysis():
         for i in range(len(df.columns)):
             print(column_idx_lookup[i])
             for j in range(len(df.index)):
-                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]))))
-                # item: QTableWidgetItem = QTableWidgetItem(str(df[column_idx_lookup[i]][j]))
+                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]),2)))
+#                item: QTableWidgetItem = QTableWidgetItem(str(round(df[column_idx_lookup[i]][j],2)))
                 dpWidget.setItem(j, i, item)
                 item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 #print(df[column_idx_lookup[i]][j])
@@ -545,15 +546,396 @@ class PurchaseVolumeAnalysis():
 
         return df
 
+    def getTrend(self, sCode, sSt=None, sEt=None, dfS0796CumData=None, dpWidget=None):
+        print('start---------------------------------------- getTrend() ---------------------------------------------')
 
-    def getTrend(self, sCode, sSt=None, sEt=None, dfS0796=None, dpWidget=None):
-        pass
-
-    def getDist(self, sCode, sSt=None, sEt=None, dfS0796=None, dpWidget=None):
-        pass
+    def getDist(self, sCode, sSt=None, sEt=None, dfS0796CumData=None, dpWidget=None):
+        print('start---------------------------------------- getDist() ---------------------------------------------')
 
     def getAnalysisTable(self, sCode, sSt=None, sEt=None, dfS0796=None, dpWidget=None):
-        pass
+        print('start---------------------------------------- getAnalysisTable() --------------------------------------')
+
+        print('>>> getAnalysisTable()  >>>  조건검색 ------------------------------------------------------------------')
+        if sCode is None:
+            print('sCode is None')
+        else:
+            print('sCode : ' + sCode)
+
+        if sSt is None:
+            print('sSt is None')
+        else:
+            print('sSt : ' + sSt)
+
+        if sEt is None:
+            print('sEt is None')
+        else:
+            print('sEt : ' + sEt)
+
+        if dfS0796 is None:
+            print('dfS0796 is None')
+        else:
+            print('dfS0796 : ')
+            print(dfS0796.head())
+
+        if dpWidget is None:
+            print('dpWidget is None')
+        else:
+            print('dpWidget : ')
+            print(dpWidget)
+
+
+
+        # 년   - from~to :  240일
+        print("전체크기", len(dfS0796))
+        
+        weekCnt = len(dfS0796) / 5
+        monthCnt = len(dfS0796) / 20
+        bungiCnt = len(dfS0796) / 60
+        yearCnt = len(dfS0796) / 240
+
+        columnsList = ['일자', '현재가', '누적거래량', '개인투자자', '세력합' , '외국인투자자', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']
+
+        dfCalS0796 = self.cal(dfS0796)
+         
+        print('Day :-----------------------------------------------------------------------')
+        # 일 == 1일
+        if weekCnt >= 1  :
+
+            # dfS0796["세력합"] = dfS0796["외국인투자자"] + dfS0796["금융투자"]
+            # dfS0796.drop(columns=["대비기호", "전일대비", "등락율", "기관계"])
+            #
+            # self.df = dfS0796[0:5][['일자', '현재가', '누적거래량', '개인투자자', '세력합' , '외국인투자자', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']]
+            #
+            # print(self.df)
+            # print(self.df.columns)
+
+            day1st = self.calMeanSum(dfCalS0796, 0, 1, dfCalS0796["일자"][0])
+            day2st = self.calMeanSum(dfCalS0796, 1, 2, dfCalS0796["일자"][1])
+            day3st = self.calMeanSum(dfCalS0796, 2, 3, dfCalS0796["일자"][2])
+            day4st = self.calMeanSum(dfCalS0796, 3, 4, dfCalS0796["일자"][3])
+            day5st = self.calMeanSum(dfCalS0796, 4, 5, dfCalS0796["일자"][4])
+
+            data = []
+            data.append(day1st)
+            data.append(day2st)
+            data.append(day3st)
+            data.append(day4st)
+            data.append(day5st)
+
+            self.tableDataDay = pd.DataFrame(data, columns=columnsList, index=[day1st[0],day2st[0],day3st[0],day4st[0],day5st[0]])
+
+        else:
+            # dfS0796["세력합"] = dfS0796["외국인투자자"] + dfS0796["금융투자"]
+            # dfS0796.drop(columns=["대비기호", "전일대비", "등락율" , "기관계"])
+            #
+            # self.df = dfS0796[0:len(dfS0796)][['일자', '현재가', '누적거래량', '개인투자자', '세력합' , '외국인투자자', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']]
+            #
+            # print(self.df)
+            # print(self.df.columns)
+
+            data = []
+            dayList = []
+            for i, x in dfCalS0796:
+                day = self.calMeanSum(dfCalS0796, i, i+1, dfCalS0796["일자"][i])
+                dayList.append(dfCalS0796["일자"][i])
+                data.append(day)
+
+            self.tableDataDay = pd.DataFrame(data, columns=columnsList, index = dayList)
+
+        print('Week :-----------------------------------------------------------------------')
+        # 주 == 5일
+        if weekCnt >= 5  :
+            week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
+            week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
+            week3st = self.calMeanSum(dfCalS0796, 10, 15 , "3주")
+            week4st = self.calMeanSum(dfCalS0796, 15, 20 , "4주")
+            week5st = self.calMeanSum(dfCalS0796, 20, 25 , "5주")
+
+            data = []
+            data.append(week1st)
+            data.append(week2st)
+            data.append(week3st)
+            data.append(week4st)
+            data.append(week5st)
+
+            self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주","4주","5주"])
+
+        elif weekCnt >= 4 and weekCnt < 5 :
+            week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
+            week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
+            week3st = self.calMeanSum(dfCalS0796, 10, 15 , "3주")
+            week4st = self.calMeanSum(dfCalS0796, 15, 20 , "4주")
+
+            data = []
+            data.append(week1st)
+            data.append(week2st)
+            data.append(week3st)
+            data.append(week4st)
+
+            self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주","4주"])
+            
+        elif weekCnt >= 3 and weekCnt < 4 :
+            week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
+            week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
+            week3st = self.calMeanSum(dfCalS0796, 10, 15 , "3주")
+
+            data = []
+            data.append(week1st)
+            data.append(week2st)
+            data.append(week3st)
+
+            self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주"])
+
+        elif weekCnt >= 2 and weekCnt < 3 :
+            week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
+            week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
+
+            data = []
+            data.append(week1st)
+            data.append(week2st)
+
+            self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주"])
+
+        elif weekCnt >= 1 and weekCnt < 2 :   
+            week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
+
+            data = []
+            data.append(week1st)
+
+            self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주"])
+
+        print('Month :-----------------------------------------------------------------------')
+        # 달   - from~to :  20일
+        if monthCnt >= 3  :
+            month1st = self.calMeanSum(dfCalS0796, 0  , 20  ,"1달")
+            month2st = self.calMeanSum(dfCalS0796, 20 , 40 , "2달")
+            month3st = self.calMeanSum(dfCalS0796, 40 , 60 , "3달")
+
+            data = []
+            data.append(month1st)
+            data.append(month2st)
+            data.append(month3st)
+
+            self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달","2달","3달"])
+
+        elif monthCnt >= 2 and monthCnt < 3 :
+            month1st = self.calMeanSum(dfCalS0796, 0  , 20  ,"1달")
+            month2st = self.calMeanSum(dfCalS0796, 20 , 40 , "2달")
+
+            data = []
+            data.append(month1st)
+            data.append(month2st)
+
+            self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달","2달"])
+
+        elif monthCnt >= 1 and monthCnt < 2 :   
+            month1st = self.calMeanSum(dfCalS0796, 0  , 20  ,"1달")
+
+            data = []
+            data.append(month1st)
+
+            self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달"])
+
+        print('BunGi :-----------------------------------------------------------------------')
+        # 분기 - from~to :  60일
+        if bungiCnt >= 4 :
+            bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
+            bunGi2st = self.calMeanSum(dfCalS0796, 60,  120, "2분기")
+            bunGi3st = self.calMeanSum(dfCalS0796, 120, 180, "3분기")
+            bunGi4st = self.calMeanSum(dfCalS0796, 180, 240, "4분기")
+
+            data = []
+            data.append(bunGi1st)
+            data.append(bunGi2st)
+            data.append(bunGi3st)
+            data.append(bunGi4st)
+
+            self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기","3분기","4분기"])
+
+        elif bungiCnt >= 3 and bungiCnt < 4 :
+            bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
+            bunGi2st = self.calMeanSum(dfCalS0796, 60,  120, "2분기")
+            bunGi3st = self.calMeanSum(dfCalS0796, 120, 180, "3분기")
+
+            data = []
+            data.append(bunGi1st)
+            data.append(bunGi2st)
+            data.append(bunGi3st)
+
+            self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기","3분기"])
+
+        elif bungiCnt >= 2 and bungiCnt < 3 :
+            bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
+            bunGi2st = self.calMeanSum(dfCalS0796, 60,  120, "2분기")
+
+            data = []
+            data.append(bunGi1st)
+            data.append(bunGi2st)
+
+            self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기"])
+
+        elif bungiCnt >= 1 and bungiCnt < 2 :   
+            bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
+
+            data = []
+            data.append(bunGi1st)
+
+            self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기"])
+
+        print('year :-----------------------------------------------------------------------')
+        if yearCnt >= 7 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+            year3st = self.calMeanSum(dfCalS0796,  480,  720, "3년")
+            year4st = self.calMeanSum(dfCalS0796,  720,  960, "4년")
+            year5st = self.calMeanSum(dfCalS0796,  960, 1200, "5년")
+            year6st = self.calMeanSum(dfCalS0796, 1200, 1440, "6년")
+            year7st = self.calMeanSum(dfCalS0796, 1440, 1680, "7년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+            data.append(year3st)
+            data.append(year4st)
+            data.append(year5st)
+            data.append(year6st)
+            data.append(year7st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년","6년","7년"])
+
+        elif yearCnt >= 6 and yearCnt < 7 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+            year3st = self.calMeanSum(dfCalS0796,  480,  720, "3년")
+            year4st = self.calMeanSum(dfCalS0796,  720,  960, "4년")
+            year5st = self.calMeanSum(dfCalS0796,  960, 1200, "5년")
+            year6st = self.calMeanSum(dfCalS0796, 1200, 1440, "6년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+            data.append(year3st)
+            data.append(year4st)
+            data.append(year5st)
+            data.append(year6st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년","6년"])
+
+        elif yearCnt >= 5 and yearCnt < 6 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+            year3st = self.calMeanSum(dfCalS0796,  480,  720, "3년")
+            year4st = self.calMeanSum(dfCalS0796,  720,  960, "4년")
+            year5st = self.calMeanSum(dfCalS0796,  960, 1200, "5년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+            data.append(year3st)
+            data.append(year4st)
+            data.append(year5st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년"])
+
+        elif yearCnt >= 4 and yearCnt < 5 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+            year3st = self.calMeanSum(dfCalS0796,  480,  720, "3년")
+            year4st = self.calMeanSum(dfCalS0796,  720,  960, "4년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+            data.append(year3st)
+            data.append(year4st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년"])
+
+        elif yearCnt >= 3 and yearCnt < 4 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+            year3st = self.calMeanSum(dfCalS0796,  480,  720, "3년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+            data.append(year3st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년"])
+
+        elif yearCnt >= 2 and yearCnt < 3 :
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+            year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
+
+            data = []
+            data.append(year1st)
+            data.append(year2st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년"])
+
+        elif yearCnt >= 1 and yearCnt < 2 :                
+            year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
+
+            data = []
+            data.append(year1st)
+
+            self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년"])
+
+        df = pd.concat([self.tableDataDay, self.tableDataWeek , self.tableDataMonth , self.tableDataBunGi, self.tableDataYear ])
+
+
+        print('00000000000000000000000000000000000000000000000000000')
+        print(df)
+
+
+        # QTableWidget 에 데이터 표시하기
+        column_idx_lookup = list(df.columns)
+
+        dpWidget.setRowCount(len(df.index))
+
+
+        for i in range(len(df.columns)):
+            print(column_idx_lookup[i])
+            for j in range(len(df.index)):
+                item: QTableWidgetItem = QTableWidgetItem(str(df[column_idx_lookup[i]][j]))
+                dpWidget.setItem(j, i, item)
+                item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                # print(df[column_idx_lookup[i]][j])
+
+        dpWidget.resizeColumnsToContents()
+        dpWidget.resizeRowsToContents()
+        print("End----------------------------------------------------------------")
+
+
+    # 계산 : 세력합 계산
+    def cal(self, dfS0796=None):
+
+        dfS0796["세력합"] = dfS0796["외국인투자자"] + dfS0796["금융투자"]
+
+        return dfS0796
+
+        # mean, sum
+    def calMeanSum(self, dfS0796=None, stIdx=None, etIdx=None, dayName=None):
+
+        col0 = dayName
+        col1 = dfS0796[stIdx:etIdx][['현재가']].mean() # 숫자형
+        col2 = dfS0796[stIdx:etIdx][['누적거래량']].sum()
+        col3 = dfS0796[stIdx:etIdx][['개인투자자']].sum()
+        col4 = dfS0796[stIdx:etIdx][['세력합']].sum()
+        col5 = dfS0796[stIdx:etIdx][['외국인투자자']].sum()
+        col6 = dfS0796[stIdx:etIdx][['금융투자']].sum()
+        col7 = dfS0796[stIdx:etIdx][['보험']].sum()
+        col8 = dfS0796[stIdx:etIdx][['투신']].sum()
+        col9 = dfS0796[stIdx:etIdx][['기타금융']].sum()
+        col10 = dfS0796[stIdx:etIdx][['은행']].sum()
+        col11 = dfS0796[stIdx:etIdx][['연기금등']].sum()
+        col12 = dfS0796[stIdx:etIdx][['사모펀드']].sum()
+        col13 = dfS0796[stIdx:etIdx][['국가']].sum()
+        col14 = dfS0796[stIdx:etIdx][['기타법인']].sum()
+        col15 = dfS0796[stIdx:etIdx][['내외국인']].sum()
+
+        return [col0, col1[0], col2[0], col3[0], col4[0], col5[0], col6[0], col7[0], col8[0], col9[0], col10[0], col11[0], col12[0], col13[0], col14[0],col15[0]]
+
 
 if __name__ == "__main__":
     pass

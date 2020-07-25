@@ -77,8 +77,8 @@
       <file leaf-file-name="Kiwoom.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Kiwoom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2520">
-              <caret line="84" column="28" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="28" />
+            <state relative-caret-position="9660">
+              <caret line="328" column="29" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -89,8 +89,8 @@
       <file leaf-file-name="purchaseVolume.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/purchaseVolume.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+            <state relative-caret-position="600">
+              <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -101,11 +101,10 @@
       <file leaf-file-name="PurchaseVolumeAnalysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PurchaseVolumeAnalysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-60">
-              <caret line="141" column="58" selection-start-line="141" selection-start-column="51" selection-end-line="141" selection-end-column="58" />
+            <state relative-caret-position="762">
+              <caret line="888" lean-forward="true" selection-start-line="888" selection-end-line="888" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#408#4671#0" />
               </folding>
             </state>
           </provider>
@@ -114,7 +113,7 @@
       <file leaf-file-name="matplotlibWidgetFile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/matplotlibWidgetFile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="150">
               <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -135,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CommKwRqData</find>
       <find>col6_rate</find>
       <find>setStyle</find>
       <find>tableWidget_5</find>
@@ -162,9 +160,10 @@
       <find>idx</find>
       <find>start</find>
       <find>real_</find>
-      <find>060250</find>
       <find>set_real_reg</find>
       <find>_receive_real_data</find>
+      <find>060250</find>
+      <find>drop</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -228,9 +227,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="811" />
-    <option name="width" value="1702" />
-    <option name="height" value="2031" />
+    <option name="x" value="-11" />
+    <option name="width" value="1050" />
+    <option name="height" value="794" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -238,7 +237,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -264,6 +262,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -425,21 +424,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="3386" height="2046" extended-state="7" />
+    <frame x="-13" y="-13" width="3386" height="2046" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7993367" visible="true" weight="0.21882641" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7993367" visible="true" weight="0.17420538" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32978722" />
       <window_info anchor="right" id="R Packages" order="3" weight="0.32989025" />
       <window_info anchor="right" id="R Graphics" order="4" weight="0.32989025" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.23655257" side_tool="true" visible="true" weight="0.24120604" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.36399755" side_tool="true" visible="true" weight="0.27247348" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6360024" visible="true" weight="0.27247348" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32978722" />
       <window_info anchor="bottom" x="484" y="1348" width="5032" height="999" id="Python Console" order="10" sideWeight="0.9032905" weight="0.4391892" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7634474" visible="true" weight="0.24120604" />
       <window_info id="Structure" order="1" sideWeight="0.20066334" side_tool="true" weight="0.059290953" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4984719" weight="0.32663316" />
-      <window_info id="Favorites" order="2" sideWeight="0.50921273" side_tool="true" weight="0.41442543" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49969438" weight="0.39921832" />
+      <window_info id="Favorites" order="2" sideWeight="0.50921273" side_tool="true" weight="0.41442543" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -735,9 +734,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Kiwoom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9660">
+          <caret line="328" column="29" selection-start-line="328" selection-start-column="29" selection-end-line="328" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/matplotlibWidgetFile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="150">
           <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -747,18 +756,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/purchaseVolume.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Kiwoom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="84" column="28" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="28" />
+        <state relative-caret-position="600">
+          <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -767,11 +766,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PurchaseVolumeAnalysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="141" column="58" selection-start-line="141" selection-start-column="51" selection-end-line="141" selection-end-column="58" />
+        <state relative-caret-position="762">
+          <caret line="888" lean-forward="true" selection-start-line="888" selection-end-line="888" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#408#4671#0" />
           </folding>
         </state>
       </provider>

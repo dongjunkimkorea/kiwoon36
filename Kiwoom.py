@@ -303,7 +303,7 @@ class Kiwoom(QAxWidget):
             col2 = self._get_comm_data(trcode, "종목별투자자기관별", i, "대비기호")
             col3 = self._get_comm_data(trcode, "종목별투자자기관별", i, "전일대비")
             col4 = self._get_comm_data(trcode, "종목별투자자기관별", i, "등락율")
-            col5 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래대금")
+            col5 = self._get_comm_data(trcode, "종목별투자자기관별", i, "누적거래량")
             col6 = self._get_comm_data(trcode, "종목별투자자기관별", i, "개인투자자")
             col7 = self._get_comm_data(trcode, "종목별투자자기관별", i, "외국인투자자")
             col8 = self._get_comm_data(trcode, "종목별투자자기관별", i, "기관계")
@@ -322,8 +322,11 @@ class Kiwoom(QAxWidget):
             self.s0796['현재가'].append(int(col1))
             self.s0796['대비기호'].append(int(col2))
             self.s0796['전일대비'].append(int(col3))
-            self.s0796['등락율'].append(float(col4))
-            self.s0796['누적거래대금'].append(int(col5))
+            
+#            print("col4 : " , col4)
+            
+            self.s0796['등락율'].append(col4)
+            self.s0796['누적거래량'].append(int(col5))
             self.s0796['개인투자자'].append(int(col6))
             self.s0796['외국인투자자'].append(int(col7))
             self.s0796['기관계'].append(int(col8))

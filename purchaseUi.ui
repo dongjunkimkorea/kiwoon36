@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2100</width>
+    <width>3458</width>
     <height>2100</height>
    </rect>
   </property>
@@ -136,7 +136,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,4,5,0">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,4,5,0">
       <property name="spacing">
        <number>12</number>
       </property>
@@ -180,6 +180,16 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
           <widget class="QDateEdit" name="dateEdit_2"/>
          </item>
          <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>200</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton">
            <property name="text">
             <string>PushButton</string>
@@ -207,13 +217,13 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>800</height>
+          <height>500</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>1800</height>
+          <height>500</height>
          </size>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -232,7 +242,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>900</height>
+          <height>2000</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -402,7 +412,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               </column>
               <column>
                <property name="text">
-                <string>거래대금</string>
+                <string>거래량</string>
                </property>
               </column>
               <column>
@@ -485,6 +495,12 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
            <layout class="QVBoxLayout" name="tab_3_layout">
             <item>
              <widget class="QTableWidget" name="tableWidget_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>800</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">QTableWidget{
 background-color:#C0C0C0;
@@ -1972,7 +1988,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2100</width>
+     <width>3458</width>
      <height>38</height>
     </rect>
    </property>
