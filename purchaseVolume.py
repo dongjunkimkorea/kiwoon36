@@ -43,13 +43,13 @@ class PurchaseVolume(QMainWindow, form_class):
         dfS0796 = self.purch.getDailyAmt(sCode, dtFrom, dtTo, None, self.tableWidget_2)
 
         # 매집량_누적
-#        dfCumSum = self.purch.getAccAmt(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_3)
+        dfCumSum = self.purch.getAccAmt(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_3)
 
         # 매집량 추세
-#        self.purch.getTrend(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_4)
+        self.purch.getTrend(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_4)
 
         # 매집량 분포
-#        self.purch.getDist(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_5)
+        self.purch.getDist(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_5)
 
         # 매집량 분석표
         self.purch.getAnalysisTable(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_1)

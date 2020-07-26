@@ -50,8 +50,8 @@
       <file leaf-file-name="display.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/display.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
-              <caret line="72" column="73" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="73" />
+            <state relative-caret-position="150">
+              <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -89,8 +89,8 @@
       <file leaf-file-name="purchaseVolume.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/purchaseVolume.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+            <state relative-caret-position="450">
+              <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -101,8 +101,8 @@
       <file leaf-file-name="PurchaseVolumeAnalysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PurchaseVolumeAnalysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="762">
-              <caret line="888" lean-forward="true" selection-start-line="888" selection-end-line="888" />
+            <state relative-caret-position="296">
+              <caret line="758" lean-forward="true" selection-start-line="758" selection-end-line="758" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -134,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>col6_rate</find>
       <find>setStyle</find>
       <find>tableWidget_5</find>
       <find>comm_connect</find>
@@ -164,6 +163,7 @@
       <find>_receive_real_data</find>
       <find>060250</find>
       <find>drop</find>
+      <find>sort</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -226,10 +226,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-11" />
-    <option name="width" value="1050" />
-    <option name="height" value="794" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="27" />
+    <option name="y" value="208" />
+    <option name="width" value="3318" />
+    <option name="height" value="938" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -427,18 +428,18 @@
     <frame x="-13" y="-13" width="3386" height="2046" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7993367" visible="true" weight="0.17420538" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7993367" weight="0.042176038" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32978722" />
       <window_info anchor="right" id="R Packages" order="3" weight="0.32989025" />
       <window_info anchor="right" id="R Graphics" order="4" weight="0.32989025" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.36399755" side_tool="true" visible="true" weight="0.27247348" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6360024" visible="true" weight="0.27247348" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.31326407" side_tool="true" visible="true" weight="0.40312675" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32978722" />
       <window_info anchor="bottom" x="484" y="1348" width="5032" height="999" id="Python Console" order="10" sideWeight="0.9032905" weight="0.4391892" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6867359" visible="true" weight="0.40312675" />
       <window_info id="Structure" order="1" sideWeight="0.20066334" side_tool="true" weight="0.059290953" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4984719" weight="0.32663316" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49969438" weight="0.39921832" />
       <window_info id="Favorites" order="2" sideWeight="0.50921273" side_tool="true" weight="0.41442543" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49969438" weight="0.39921832" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -720,13 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/display.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="72" column="73" selection-start-line="72" selection-start-column="68" selection-end-line="72" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/analyze.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9600">
@@ -754,10 +748,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/display.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" selection-start-line="16" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/purchaseVolume.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="27" column="27" lean-forward="true" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+        <state relative-caret-position="450">
+          <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -766,8 +767,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PurchaseVolumeAnalysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="888" lean-forward="true" selection-start-line="888" selection-end-line="888" />
+        <state relative-caret-position="296">
+          <caret line="758" lean-forward="true" selection-start-line="758" selection-end-line="758" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

@@ -505,6 +505,7 @@ class PurchaseVolumeAnalysis():
                         '국가', '최고저점_국가', '매집수량_국가', '매집고점_국가', '분산비율_국가',
                         '기타법인', '최고저점_기타법인', '매집수량_기타법인', '매집고점_기타법인', '분산비율_기타법인',
                         '내외국인', '최고저점_내외국인', '매집수량_내외국인', '매집고점_내외국인', '분산비율_내외국인',
+
                         '세력매집추세_주가','세력매집추세_5일추세','세력매집추세_20일추세',
                         '세력분산비율추세_주가','세력분산비율추세_개인분산','세력분산비율추세_세력분산',
 
@@ -549,8 +550,253 @@ class PurchaseVolumeAnalysis():
     def getTrend(self, sCode, sSt=None, sEt=None, dfS0796CumData=None, dpWidget=None):
         print('start---------------------------------------- getTrend() ---------------------------------------------')
 
+        print('>>> getAccAmt()  >>>  분석 DataFrame 생성 >>> 매집수량 5,20,60추세 --------------------------------------------------')
+
+        columns = ['일자','주가',
+                     '5일추세_개인', '5일추세_외국인', '5일추세_외국인기관', '5일추세_금융투자', '5일추세_보험', '5일추세_투신', '5일추세_기타금융', '5일추세_은행', '5일추세_연기금', '5일추세_사모펀드', '5일추세_국가', '5일추세_기타법인', '5일추세_내외국인',
+                    '10일추세_개인','10일추세_외국인','10일추세_외국인기관','10일추세_금융투자','10일추세_보험','10일추세_투신','10일추세_기타금융','10일추세_은행','10일추세_연기금','10일추세_사모펀드','10일추세_국가','10일추세_기타법인','10일추세_내외국인',
+                    '20일추세_개인', '20일추세_외국인', '20일추세_외국인기관', '20일추세_금융투자', '20일추세_보험', '20일추세_투신', '20일추세_기타금융', '20일추세_은행', '20일추세_연기금', '20일추세_사모펀드', '20일추세_국가', '20일추세_기타법인', '20일추세_내외국인',
+                    '40일추세_개인', '40일추세_외국인', '40일추세_외국인기관', '40일추세_금융투자', '40일추세_보험', '40일추세_투신', '40일추세_기타금융', '40일추세_은행', '40일추세_연기금', '40일추세_사모펀드', '40일추세_국가', '40일추세_기타법인', '40일추세_내외국인',
+                    '60일추세_개인', '60일추세_외국인', '60일추세_외국인기관', '60일추세_금융투자', '60일추세_보험', '60일추세_투신', '60일추세_기타금융', '60일추세_은행', '60일추세_연기금', '60일추세_사모펀드', '60일추세_국가', '60일추세_기타법인', '60일추세_내외국인',
+                    '80일추세_개인', '80일추세_외국인', '80일추세_외국인기관', '80일추세_금융투자', '80일추세_보험', '80일추세_투신', '80일추세_기타금융', '80일추세_은행', '80일추세_연기금', '80일추세_사모펀드', '80일추세_국가', '80일추세_기타법인', '80일추세_내외국인',
+                    '100일추세_개인', '100일추세_외국인', '100일추세_외국인기관', '100일추세_금융투자', '100일추세_보험', '100일추세_투신', '100일추세_기타금융', '100일추세_은행', '100일추세_연기금', '100일추세_사모펀드', '100일추세_국가', '100일추세_기타법인', '100일추세_내외국인',
+                    '120일추세_개인', '120일추세_외국인', '120일추세_외국인기관', '120일추세_금융투자', '120일추세_보험', '120일추세_투신', '120일추세_기타금융', '120일추세_은행', '120일추세_연기금', '120일추세_사모펀드', '120일추세_국가', '120일추세_기타법인', '120일추세_내외국인',
+                    '240일추세_개인', '240일추세_외국인', '240일추세_외국인기관', '240일추세_금융투자', '240일추세_보험', '240일추세_투신', '240일추세_기타금융', '240일추세_은행', '240일추세_연기금', '240일추세_사모펀드', '240일추세_국가', '240일추세_기타법인', '240일추세_내외국인']
+
+        df = pd.DataFrame(columns=columns)
+
+        print('데이터 프레임 정렬')
+        print(dfS0796CumData.head())
+        dfAscending = dfS0796CumData.sort_index(ascending=True)
+        print(dfAscending.head())
+
+
+        df["일자"] = dfAscending["일자"]
+        df["주가"] = dfAscending["현재가"]
+        df["5일추세_개인"]  = dfAscending['매집수량_개인투자자'].rolling(window=5).mean()
+        df["5일추세_외국인"] = dfAscending['매집수량_외국인투자자'].rolling(window=5).mean()
+        df["5일추세_외국인기관"] = dfAscending['매집수량_외국인기관'].rolling(window=5).mean()
+        df["5일추세_금융투자"] = dfAscending['매집수량_금융투자'].rolling(window=5).mean()
+        df["5일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=5).mean()
+        df["5일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=5).mean()
+        df["5일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=5).mean()
+        df["5일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=5).mean()
+        df["5일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=5).mean()
+        df["5일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=5).mean()
+        df["5일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=5).mean()
+        df["5일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=5).mean()
+        df["5일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=5).mean()
+
+        df["10일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=10).mean()
+        df["10일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=10).mean()
+        df["10일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=10).mean()
+        df["10일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=10).mean()
+        df["10일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=10).mean()
+        df["10일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=10).mean()
+        df["10일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=10).mean()
+        df["10일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=10).mean()
+        df["10일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=10).mean()
+        df["10일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=10).mean()
+        df["10일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=10).mean()
+        df["10일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=10).mean()
+        df["10일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=10).mean()
+
+        df["20일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=20).mean()
+        df["20일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=20).mean()
+        df["20일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=20).mean()
+        df["20일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=20).mean()
+        df["20일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=20).mean()
+        df["20일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=20).mean()
+        df["20일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=20).mean()
+        df["20일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=20).mean()
+        df["20일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=20).mean()
+        df["20일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=20).mean()
+        df["20일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=20).mean()
+        df["20일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=20).mean()
+        df["20일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=20).mean()
+
+        df["40일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=40).mean()
+        df["40일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=40).mean()
+        df["40일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=40).mean()
+        df["40일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=40).mean()
+        df["40일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=40).mean()
+        df["40일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=40).mean()
+        df["40일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=40).mean()
+        df["40일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=40).mean()
+        df["40일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=40).mean()
+        df["40일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=40).mean()
+        df["40일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=40).mean()
+        df["40일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=40).mean()
+        df["40일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=40).mean()
+
+        df["80일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=80).mean()
+        df["80일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=80).mean()
+        df["80일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=80).mean()
+        df["80일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=80).mean()
+        df["80일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=80).mean()
+        df["80일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=80).mean()
+        df["80일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=80).mean()
+        df["80일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=80).mean()
+        df["80일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=80).mean()
+        df["80일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=80).mean()
+        df["80일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=80).mean()
+        df["80일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=80).mean()
+        df["80일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=80).mean()
+
+        df["100일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=100).mean()
+        df["100일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=100).mean()
+        df["100일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=100).mean()
+        df["100일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=100).mean()
+        df["100일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=100).mean()
+        df["100일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=100).mean()
+        df["100일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=100).mean()
+        df["100일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=100).mean()
+        df["100일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=100).mean()
+        df["100일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=100).mean()
+        df["100일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=100).mean()
+        df["100일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=100).mean()
+        df["100일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=100).mean()
+
+        df["120일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=120).mean()
+        df["120일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=120).mean()
+        df["120일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=120).mean()
+        df["120일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=120).mean()
+        df["120일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=120).mean()
+        df["120일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=120).mean()
+        df["120일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=120).mean()
+        df["120일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=120).mean()
+        df["120일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=120).mean()
+        df["120일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=120).mean()
+        df["120일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=120).mean()
+        df["120일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=120).mean()
+        df["120일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=120).mean()
+
+        df["240일추세_개인"]      = dfAscending['매집수량_개인투자자'].rolling(window=240).mean()
+        df["240일추세_외국인"]     = dfAscending['매집수량_외국인투자자'].rolling(window=240).mean()
+        df["240일추세_외국인기관"]= dfAscending['매집수량_외국인기관'].rolling(window=240).mean()
+        df["240일추세_금융투자"]= dfAscending['매집수량_금융투자'].rolling(window=240).mean()
+        df["240일추세_보험"] = dfAscending['매집수량_보험'].rolling(window=240).mean()
+        df["240일추세_투신"] = dfAscending['매집수량_투신'].rolling(window=240).mean()
+        df["240일추세_기타금융"] = dfAscending['매집수량_기타금융'].rolling(window=240).mean()
+        df["240일추세_은행"] = dfAscending['매집수량_은행'].rolling(window=240).mean()
+        df["240일추세_연기금"] = dfAscending['매집수량_연기금등'].rolling(window=240).mean()
+        df["240일추세_사모펀드"] = dfAscending['매집수량_사모펀드'].rolling(window=240).mean()
+        df["240일추세_국가"] = dfAscending['매집수량_국가'].rolling(window=240).mean()
+        df["240일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=240).mean()
+        df["240일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=240).mean()
+
+        print('---------------------------------------------------------77777777777777777777777777777777777777777777777777')
+
+        df = df.sort_index(ascending=False)
+        df = df.fillna(0)
+
+        # QTableWidget 에 데이터 표시하기
+        column_idx_lookup = list(df.columns)
+
+        # print(list(column_idx_lookup))
+
+        # dpWidget.setColumnCount(len(df.columns))
+        dpWidget.setRowCount(len(df.index))
+
+        # print('len(df.index) : ' , len(df.index))
+        # print('len(df.columns) : ', len(df.columns))
+
+        for i in range(len(df.columns)):
+            print(column_idx_lookup[i])
+            for j in range(len(df.index)):
+                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]), 2)))
+                dpWidget.setItem(j, i, item)
+                item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                # print(df[column_idx_lookup[i]][j])
+
+        dpWidget.resizeColumnsToContents()
+        dpWidget.resizeRowsToContents()
+
+        print("검증...")
+
+
+
     def getDist(self, sCode, sSt=None, sEt=None, dfS0796CumData=None, dpWidget=None):
         print('start---------------------------------------- getDist() ---------------------------------------------')
+
+        print('>>> getDist()  >>>  조건검색 ------------------------------------------------------------------')
+        if sCode is None:
+            print('sCode is None')
+        else:
+            print('sCode : ' + sCode)
+
+        if sSt is None:
+            print('sSt is None')
+        else:
+            print('sSt : ' + sSt)
+
+        if sEt is None:
+            print('sEt is None')
+        else:
+            print('sEt : ' + sEt)
+
+        if dfS0796CumData is None:
+            print('dfS0796CumData is None')
+        else:
+            print('dfS0796CumData : ')
+            print(dfS0796CumData.head())
+
+        if dpWidget is None:
+            print('dpWidget is None')
+        else:
+            print('dpWidget : ')
+            print(dpWidget)
+
+        print(dfS0796CumData)
+
+        columns = ['일자','주가',
+                    '분산_개인', '분산_외국인', '분산_외국인기관', '분선_금융투자', '분산_보험', '분산_투신', '분산_기타금융', '분산_은행', '분산_연기금', '분산_사모펀드', '분산_국가', '분선_기타법인', '분산_내외국인']
+
+        df = pd.DataFrame(columns=columns)
+
+        df["일자"] = dfS0796CumData["일자"]
+        df["주가"] = dfS0796CumData["현재가"]
+
+        df["분산_개인"] = dfS0796CumData["분산비율_개인투자자"]
+        df["분산_외국인"] = dfS0796CumData["분산비율_외국인투자자"]
+        df["분산_외국인기관"] = dfS0796CumData["분산비율_외국인기관"]
+        df["분선_금융투자"] = dfS0796CumData["분산비율_금융투자"]
+        df["분산_보험"] = dfS0796CumData["분산비율_보험"]
+        df["분산_투신"] = dfS0796CumData["분산비율_투신"]
+        df["분산_기타금융"] = dfS0796CumData["분산비율_기타금융"]
+        df["분산_은행"] = dfS0796CumData["분산비율_은행"]
+        df["분산_연기금"] = dfS0796CumData["분산비율_연기금등"]
+        df["분산_사모펀드"] = dfS0796CumData["분산비율_사모펀드"]
+        df["분산_국가"] = dfS0796CumData["분산비율_국가"]
+        df["분선_기타법인"] = dfS0796CumData["분산비율_기타법인"]
+        df["분산_내외국인"] = dfS0796CumData["분산비율_내외국인"]
+
+
+
+
+
+
+        # QTableWidget 에 데이터 표시하기
+        column_idx_lookup = list(df.columns)
+
+        # print(list(column_idx_lookup))
+
+        # dpWidget.setColumnCount(len(df.columns))
+        dpWidget.setRowCount(len(df.index))
+
+        # print('len(df.index) : ' , len(df.index))
+        # print('len(df.columns) : ', len(df.columns))
+
+        for i in range(len(df.columns)):
+            print(column_idx_lookup[i])
+            for j in range(len(df.index)):
+                item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]), 2)))
+                dpWidget.setItem(j, i, item)
+                item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
+                # print(df[column_idx_lookup[i]][j])
+
+        dpWidget.resizeColumnsToContents()
+        dpWidget.resizeRowsToContents()
 
     def getAnalysisTable(self, sCode, sSt=None, sEt=None, dfS0796=None, dpWidget=None):
         print('start---------------------------------------- getAnalysisTable() --------------------------------------')
@@ -593,9 +839,16 @@ class PurchaseVolumeAnalysis():
         bungiCnt = len(dfS0796) / 60
         yearCnt = len(dfS0796) / 240
 
+        print(weekCnt,monthCnt,bungiCnt,yearCnt)
+
         columnsList = ['일자', '현재가', '누적거래량', '개인투자자', '세력합' , '외국인투자자', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']
 
         dfCalS0796 = self.cal(dfS0796)
+        
+        tableDataWeekExist = False
+        tableDataMonthExist = False
+        tableDataBunGiExist = False
+        tableDataYearExist = False
          
         print('Day :-----------------------------------------------------------------------')
         # 일 == 1일
@@ -622,8 +875,8 @@ class PurchaseVolumeAnalysis():
             data.append(day4st)
             data.append(day5st)
 
+#            self.tableDataDay = pd.DataFrame(data, columns=columnsList, index=[day1st[0],day2st[0],day3st[0],day4st[0],day5st[0]])
             self.tableDataDay = pd.DataFrame(data, columns=columnsList, index=[day1st[0],day2st[0],day3st[0],day4st[0],day5st[0]])
-
         else:
             # dfS0796["세력합"] = dfS0796["외국인투자자"] + dfS0796["금융투자"]
             # dfS0796.drop(columns=["대비기호", "전일대비", "등락율" , "기관계"])
@@ -659,7 +912,7 @@ class PurchaseVolumeAnalysis():
             data.append(week5st)
 
             self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주","4주","5주"])
-
+            tableDataWeekExist = True
         elif weekCnt >= 4 and weekCnt < 5 :
             week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
             week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
@@ -673,7 +926,7 @@ class PurchaseVolumeAnalysis():
             data.append(week4st)
 
             self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주","4주"])
-            
+            tableDataWeekExist = True
         elif weekCnt >= 3 and weekCnt < 4 :
             week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
             week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
@@ -685,7 +938,7 @@ class PurchaseVolumeAnalysis():
             data.append(week3st)
 
             self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주","3주"])
-
+            tableDataWeekExist = True
         elif weekCnt >= 2 and weekCnt < 3 :
             week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
             week2st = self.calMeanSum(dfCalS0796, 5 , 10 , "2주")
@@ -695,7 +948,7 @@ class PurchaseVolumeAnalysis():
             data.append(week2st)
 
             self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주","2주"])
-
+            tableDataWeekExist = True
         elif weekCnt >= 1 and weekCnt < 2 :   
             week1st = self.calMeanSum(dfCalS0796, 0 , 5  ,"1주")
 
@@ -703,7 +956,7 @@ class PurchaseVolumeAnalysis():
             data.append(week1st)
 
             self.tableDataWeek = pd.DataFrame(data, columns=columnsList, index=["1주"])
-
+            tableDataWeekExist = True
         print('Month :-----------------------------------------------------------------------')
         # 달   - from~to :  20일
         if monthCnt >= 3  :
@@ -717,7 +970,7 @@ class PurchaseVolumeAnalysis():
             data.append(month3st)
 
             self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달","2달","3달"])
-
+            tableDataMonthExist = True
         elif monthCnt >= 2 and monthCnt < 3 :
             month1st = self.calMeanSum(dfCalS0796, 0  , 20  ,"1달")
             month2st = self.calMeanSum(dfCalS0796, 20 , 40 , "2달")
@@ -727,7 +980,7 @@ class PurchaseVolumeAnalysis():
             data.append(month2st)
 
             self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달","2달"])
-
+            tableDataMonthExist = True
         elif monthCnt >= 1 and monthCnt < 2 :   
             month1st = self.calMeanSum(dfCalS0796, 0  , 20  ,"1달")
 
@@ -735,7 +988,7 @@ class PurchaseVolumeAnalysis():
             data.append(month1st)
 
             self.tableDataMonth = pd.DataFrame(data, columns=columnsList, index=["1달"])
-
+            tableDataMonthExist = True
         print('BunGi :-----------------------------------------------------------------------')
         # 분기 - from~to :  60일
         if bungiCnt >= 4 :
@@ -751,7 +1004,7 @@ class PurchaseVolumeAnalysis():
             data.append(bunGi4st)
 
             self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기","3분기","4분기"])
-
+            tableDataBunGiExist = True
         elif bungiCnt >= 3 and bungiCnt < 4 :
             bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
             bunGi2st = self.calMeanSum(dfCalS0796, 60,  120, "2분기")
@@ -763,7 +1016,7 @@ class PurchaseVolumeAnalysis():
             data.append(bunGi3st)
 
             self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기","3분기"])
-
+            tableDataBunGiExist = True
         elif bungiCnt >= 2 and bungiCnt < 3 :
             bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
             bunGi2st = self.calMeanSum(dfCalS0796, 60,  120, "2분기")
@@ -773,7 +1026,7 @@ class PurchaseVolumeAnalysis():
             data.append(bunGi2st)
 
             self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기","2분기"])
-
+            tableDataBunGiExist = True
         elif bungiCnt >= 1 and bungiCnt < 2 :   
             bunGi1st = self.calMeanSum(dfCalS0796, 0,    60, "1분기")
 
@@ -781,7 +1034,7 @@ class PurchaseVolumeAnalysis():
             data.append(bunGi1st)
 
             self.tableDataBunGi = pd.DataFrame(data, columns=columnsList, index=["1분기"])
-
+            tableDataBunGiExist = True
         print('year :-----------------------------------------------------------------------')
         if yearCnt >= 7 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
@@ -802,7 +1055,7 @@ class PurchaseVolumeAnalysis():
             data.append(year7st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년","6년","7년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 6 and yearCnt < 7 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
             year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
@@ -820,7 +1073,7 @@ class PurchaseVolumeAnalysis():
             data.append(year6st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년","6년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 5 and yearCnt < 6 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
             year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
@@ -836,7 +1089,7 @@ class PurchaseVolumeAnalysis():
             data.append(year5st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년","5년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 4 and yearCnt < 5 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
             year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
@@ -850,7 +1103,7 @@ class PurchaseVolumeAnalysis():
             data.append(year4st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년","4년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 3 and yearCnt < 4 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
             year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
@@ -862,7 +1115,7 @@ class PurchaseVolumeAnalysis():
             data.append(year3st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년","3년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 2 and yearCnt < 3 :
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
             year2st = self.calMeanSum(dfCalS0796,  240,  480, "2년")
@@ -872,7 +1125,7 @@ class PurchaseVolumeAnalysis():
             data.append(year2st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년","2년"])
-
+            tableDataYearExist = True
         elif yearCnt >= 1 and yearCnt < 2 :                
             year1st = self.calMeanSum(dfCalS0796,  0,    240, "1년")
 
@@ -880,10 +1133,23 @@ class PurchaseVolumeAnalysis():
             data.append(year1st)
 
             self.tableDataYear = pd.DataFrame(data, columns=columnsList, index=["1년"])
+            tableDataYearExist = True
+            
+        dataFList = []
+ 
+        dataFList.append(self.tableDataDay)
+        
+        if tableDataWeekExist == True :
+            dataFList.append(self.tableDataWeek)
+        if tableDataMonthExist == True :
+            dataFList.append(self.tableDataMonth)
+        if tableDataBunGiExist == True:
+            dataFList.append(self.tableDataBunGi)
+        if tableDataYearExist == True :
+            dataFList.append(self.tableDataYear)
 
-        df = pd.concat([self.tableDataDay, self.tableDataWeek , self.tableDataMonth , self.tableDataBunGi, self.tableDataYear ])
-
-
+        df = pd.concat(dataFList)
+        
         print('00000000000000000000000000000000000000000000000000000')
         print(df)
 

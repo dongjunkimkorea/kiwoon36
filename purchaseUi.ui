@@ -242,7 +242,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>2000</height>
+          <height>1200</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -255,7 +255,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -1094,12 +1094,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>
-기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
 외국인+기관</string>
                </property>
               </column>
@@ -1173,12 +1167,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
                <property name="text">
                 <string>
 외국인</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
-기관</string>
                </property>
               </column>
               <column>
@@ -1262,12 +1250,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>
-기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
 외+기</string>
                </property>
               </column>
@@ -1341,12 +1323,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
                <property name="text">
                 <string>
 외국인</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
-기관</string>
                </property>
               </column>
               <column>
@@ -1430,12 +1406,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>
-기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
 외+기</string>
                </property>
               </column>
@@ -1509,12 +1479,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
                <property name="text">
                 <string>
 외국인</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
-기관</string>
                </property>
               </column>
               <column>
@@ -1598,12 +1562,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>
-기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
 외+기</string>
                </property>
               </column>
@@ -1682,12 +1640,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>
-기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
 외+기</string>
                </property>
               </column>
@@ -1761,12 +1713,6 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
                <property name="text">
                 <string>
 외국인</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>
-기관</string>
                </property>
               </column>
               <column>
@@ -1895,22 +1841,12 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               </column>
               <column>
                <property name="text">
+                <string>외국인</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
                 <string>외+기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>세력</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>기관</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>세력분산</string>
                </property>
               </column>
               <column>
@@ -1951,6 +1887,11 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
               <column>
                <property name="text">
                 <string>국가</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>기타법인</string>
                </property>
               </column>
               <column>
