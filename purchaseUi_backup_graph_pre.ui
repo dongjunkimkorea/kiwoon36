@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2100</width>
-    <height>1700</height>
+    <width>3458</width>
+    <height>2100</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>2100</width>
-    <height>1700</height>
+    <height>2100</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -136,9 +136,9 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,4,5,0">
       <property name="spacing">
-       <number>0</number>
+       <number>12</number>
       </property>
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
@@ -213,22 +213,28 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
        </widget>
       </item>
       <item>
-       <widget class="QTabWidget" name="tabWidget_2">
-        <widget class="QWidget" name="tab">
-         <attribute name="title">
-          <string>Tab 1</string>
-         </attribute>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <layout class="QVBoxLayout" name="graph_1_layout"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_6">
-         <attribute name="title">
-          <string>Tab 2</string>
-         </attribute>
-        </widget>
+       <widget class="matplotlibWidget" name="graphArea" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>500</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>500</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QVBoxLayout" name="graphAreaVerticalLayout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -236,7 +242,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>800</height>
+          <height>1200</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -249,7 +255,7 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -1901,6 +1907,19 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
         </widget>
        </widget>
       </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </item>
    </layout>
@@ -1910,13 +1929,21 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2100</width>
+     <width>3458</width>
      <height>38</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>matplotlibWidget</class>
+   <extends>QWidget</extends>
+   <header>matplotlibWidgetFile</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>tableWidget_4</tabstop>
   <tabstop>dateEdit_1</tabstop>

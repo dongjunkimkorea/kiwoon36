@@ -7,6 +7,9 @@ import time
 from Kiwoom import *
 import numpy as np
 
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
 class PurchaseVolumeAnalysis():
     
     def __init__(self):
@@ -714,7 +717,7 @@ class PurchaseVolumeAnalysis():
 
         print("검증...")
 
-
+        return df
 
     def getDist(self, sCode, sSt=None, sEt=None, dfS0796CumData=None, dpWidget=None):
         print('start---------------------------------------- getDist() ---------------------------------------------')
@@ -750,7 +753,7 @@ class PurchaseVolumeAnalysis():
         print(dfS0796CumData)
 
         columns = ['일자','주가',
-                    '분산_개인', '분산_외국인', '분산_외국인기관', '분선_금융투자', '분산_보험', '분산_투신', '분산_기타금융', '분산_은행', '분산_연기금', '분산_사모펀드', '분산_국가', '분선_기타법인', '분산_내외국인']
+                    '분산_개인', '분산_외국인', '분산_외국인기관', '분산_금융투자', '분산_보험', '분산_투신', '분산_기타금융', '분산_은행', '분산_연기금', '분산_사모펀드', '분산_국가', '분선_기타법인', '분산_내외국인']
 
         df = pd.DataFrame(columns=columns)
 
@@ -760,7 +763,7 @@ class PurchaseVolumeAnalysis():
         df["분산_개인"] = dfS0796CumData["분산비율_개인투자자"]
         df["분산_외국인"] = dfS0796CumData["분산비율_외국인투자자"]
         df["분산_외국인기관"] = dfS0796CumData["분산비율_외국인기관"]
-        df["분선_금융투자"] = dfS0796CumData["분산비율_금융투자"]
+        df["분산_금융투자"] = dfS0796CumData["분산비율_금융투자"]
         df["분산_보험"] = dfS0796CumData["분산비율_보험"]
         df["분산_투신"] = dfS0796CumData["분산비율_투신"]
         df["분산_기타금융"] = dfS0796CumData["분산비율_기타금융"]
@@ -797,6 +800,8 @@ class PurchaseVolumeAnalysis():
 
         dpWidget.resizeColumnsToContents()
         dpWidget.resizeRowsToContents()
+
+        return df
 
     def getAnalysisTable(self, sCode, sSt=None, sEt=None, dfS0796=None, dpWidget=None):
         print('start---------------------------------------- getAnalysisTable() --------------------------------------')
@@ -1163,7 +1168,7 @@ class PurchaseVolumeAnalysis():
         for i in range(len(df.columns)):
             print(column_idx_lookup[i])
             for j in range(len(df.index)):
-                item: QTableWidgetItem = QTableWidgetItem(str(df[column_idx_lookup[i]][j]))
+                item: QTableWidgetItem = QTableWidgetItem(str( df[column_idx_lookup[i]][j]    ))
                 dpWidget.setItem(j, i, item)
                 item.setTextAlignment(Qt.AlignVCenter | Qt.AlignRight)
                 # print(df[column_idx_lookup[i]][j])
@@ -1172,6 +1177,7 @@ class PurchaseVolumeAnalysis():
         dpWidget.resizeRowsToContents()
         print("End----------------------------------------------------------------")
 
+        return df
 
     # 계산 : 세력합 계산
     def cal(self, dfS0796=None):
@@ -1184,7 +1190,7 @@ class PurchaseVolumeAnalysis():
     def calMeanSum(self, dfS0796=None, stIdx=None, etIdx=None, dayName=None):
 
         col0 = dayName
-        col1 = dfS0796[stIdx:etIdx][['현재가']].mean() # 숫자형
+        col1 = dfS0796[stIdx:etIdx][['현재가']].apply(np.abs).mean() # 숫자형
         col2 = dfS0796[stIdx:etIdx][['누적거래량']].sum()
         col3 = dfS0796[stIdx:etIdx][['개인투자자']].sum()
         col4 = dfS0796[stIdx:etIdx][['세력합']].sum()
@@ -1202,6 +1208,44 @@ class PurchaseVolumeAnalysis():
 
         return [col0, col1[0], col2[0], col3[0], col4[0], col5[0], col6[0], col7[0], col8[0], col9[0], col10[0], col11[0], col12[0], col13[0], col14[0],col15[0]]
 
+    def drawDist(self, df = None , drawLayout = None):
+
+        df = df.sort_index(ascending=True)
+
+        self.fig = plt.Figure(figsize=(200, 100))
+        self.canvas = FigureCanvas(self.fig)
+
+        drawLayout.addWidget(self.canvas)
+
+        ax = self.fig.add_subplot(111)
+
+        ax.plot( df["분산_개인"], label='1')
+        # ax.plot( df["분산_외국인"], label='2')
+        # ax.plot(df["분산_금융투자"], label='3')
+        # ax.plot(df.index, df["분산_보험"], label='보험')
+        # ax.plot(df.index, df["분산_투신"], label='투신')
+        # ax.plot(df.index, df["분산_기타금융"], label='기타금융')
+        # ax.plot(df.index, df["분산_은행"], label='은행')
+        # ax.plot(df.index, df["분산_연기금"], label='연기금')
+        # ax.plot(df.index, df["분산_사모펀드"], label='사모펀드')
+        # ax.plot(df.index, df["분산_국가"], label='국가')
+        # ax.plot(df.index, df["분선_기타법인"], label='기타법인')
+        # ax.plot(df.index, df["분산_내외국인"], label='내외국인')
+
+        ax.legend(loc='upper right')
+        ax.grid()
+
+        self.canvas.draw()
+
+
+
+
+
+
+        self.canvas.draw()
+
+        print(df)
+        print(df.columns)
 
 if __name__ == "__main__":
     pass

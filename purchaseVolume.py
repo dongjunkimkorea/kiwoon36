@@ -25,8 +25,8 @@ class PurchaseVolume(QMainWindow, form_class):
 
     def btn_Clicked(self):
 
-        dtFrom = "20200724"
-        dtTo = "20200724"
+        dtFrom = "20200727"
+        dtTo = "20200727"
         sCode = self.lineEdit.text()
         
         print("sCode ==>" , sCode)
@@ -46,13 +46,16 @@ class PurchaseVolume(QMainWindow, form_class):
         dfCumSum = self.purch.getAccAmt(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_3)
 
         # 매집량 추세
-        self.purch.getTrend(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_4)
+        dfTrend = self.purch.getTrend(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_4)
 
         # 매집량 분포
-        self.purch.getDist(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_5)
+        dfDist = self.purch.getDist(sCode, dtFrom, dtTo, dfCumSum, self.tableWidget_5)
 
         # 매집량 분석표
-        self.purch.getAnalysisTable(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_1)
+        dfTable  = self.purch.getAnalysisTable(sCode, dtFrom, dtTo, dfS0796, self.tableWidget_1)
+
+        self.purch.drawDist(dfDist, self.graph_1_layout)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
