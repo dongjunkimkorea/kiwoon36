@@ -7,8 +7,14 @@ import time
 from Kiwoom import *
 import numpy as np
 
+import matplotlib as mpl
+
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+
+from matplotlib import font_manager, rc
+import matplotlib.ticker as ticker
+
 
 class PurchaseVolumeAnalysis():
     
@@ -102,7 +108,7 @@ class PurchaseVolumeAnalysis():
         self.kiwoom.comm_rq_data("opt10059_req", "opt10059", 0, "0101")
 
         while self.kiwoom.remained_data == True:
-            print("조회")
+            # print("조회")
             time.sleep(0.2)
 
             self.kiwoom.set_input_value("일자", sSt)
@@ -187,8 +193,8 @@ class PurchaseVolumeAnalysis():
         # DataFrame 날짜 오름 차순으로 정렬하기.
         print('>>> getAccAmt()  >>>  dfS0796 날짜오름차순정렬 ----------------------------------------------------------')
         dfS0796 = dfS0796.sort_index(ascending=True)
-        print('dfS0796.head() : ')
-        print(dfS0796.head())
+        # print('dfS0796.head() : ')
+        # print(dfS0796.head())
 
         print('>>> getAccAmt()  >>>  검색조건 출력  <== 미완성 ---------------------------------------------------------')
         # 검색조건
@@ -212,11 +218,11 @@ class PurchaseVolumeAnalysis():
         df_cumsum = dfS0796.cumsum()
         df_cumsum["외국인기관"] = df_cumsum["외국인투자자"] + df_cumsum["금융투자"]
 		
-        print('dfS0796 id : ' , id(dfS0796))
-        print('df_cumsum id : ' , id(df_cumsum))
-
-        print(list(dfS0796.columns))
-        print(list(df_cumsum.columns))
+        # print('dfS0796 id : ' , id(dfS0796))
+        # print('df_cumsum id : ' , id(df_cumsum))
+        #
+        # print(list(dfS0796.columns))
+        # print(list(df_cumsum.columns))
 
 #        col6_sum = df_cumsum["개인투자자"]
 #        col7_sum = df_cumsum["외국인투자자"]
@@ -235,10 +241,10 @@ class PurchaseVolumeAnalysis():
 #        col20_sum = df_cumsum["외국인투자자"] + df_cumsum["금융투자"]
 
         print('>>> getAccAmt()  >>>  분석 DataFrame 생성 >>> 누적합계  >>>  검증  --------------------------------------')
-        print('dfS0796.tail()')
-        print(dfS0796.tail())
-        print('df_cumsum.tail()')
-        print(df_cumsum.tail())
+        # print('dfS0796.tail()')
+        # print(dfS0796.tail())
+        # print('df_cumsum.tail()')
+        # print(df_cumsum.tail())
 
         print('>>> getAccAmt()  >>>  분석 DataFrame 생성 >>> 현재가  ---------------------------------------------------')
         df_cumsum["현재가"] = prices
@@ -480,16 +486,16 @@ class PurchaseVolumeAnalysis():
         print('>>> getAccAmt()  >>>  분석 DataFrame 생성 >>> fillna  --------------------------------------------------')
         df_cumsum = df_cumsum.fillna(0)
 
-        print('------------------------------------------------------------------------------------------>>>  분석결과 1')
-        print(dfS0796.tail())
-        print(df_cumsum.tail())
-        print('------------------------------------------------------------------------------------------>>>  분석결과 2')
-        print('dfS0796 id :')
-        print('df_cumsum id :')
-        print(id(dfS0796))
-        print(id(df_cumsum))
-        print(dfS0796.columns)
-        print(df_cumsum.columns)
+        # print('------------------------------------------------------------------------------------------>>>  분석결과 1')
+        # print(dfS0796.tail())
+        # print(df_cumsum.tail())
+        # print('------------------------------------------------------------------------------------------>>>  분석결과 2')
+        # print('dfS0796 id :')
+        # print('df_cumsum id :')
+        # print(id(dfS0796))
+        # print(id(df_cumsum))
+        # print(dfS0796.columns)
+        # print(df_cumsum.columns)
         print('>>> getAccAmt()  >>>  분석 DataFrame >>> Table  --------------------------------------------------------')
         df = df_cumsum[['일자','현재가',
                         '개인투자자','최고저점_개인투자자','매집수량_개인투자자','매집고점_개인투자자','분산비율_개인투자자',
@@ -517,7 +523,7 @@ class PurchaseVolumeAnalysis():
                         '보유수량추세_국가', '보유수량추세_기타법인', '보유수량추세_내외국인']]
 
         df.fillna(0)
-        print(df.head())
+        # print(df.head())
 
 
         print('>>> getAccAmt()  >>>  분석 DataFrame >>> sort  --------------------------------------------------------')
@@ -537,7 +543,7 @@ class PurchaseVolumeAnalysis():
         # print('len(df.columns) : ', len(df.columns))
 
         for i in range(len(df.columns)):
-            print(column_idx_lookup[i])
+            # print(column_idx_lookup[i])
             for j in range(len(df.index)):
                 item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]),2)))
 #                item: QTableWidgetItem = QTableWidgetItem(str(round(df[column_idx_lookup[i]][j],2)))
@@ -568,10 +574,10 @@ class PurchaseVolumeAnalysis():
 
         df = pd.DataFrame(columns=columns)
 
-        print('데이터 프레임 정렬')
-        print(dfS0796CumData.head())
+        # print('데이터 프레임 정렬')
+        # print(dfS0796CumData.head())
         dfAscending = dfS0796CumData.sort_index(ascending=True)
-        print(dfAscending.head())
+        # print(dfAscending.head())
 
 
         df["일자"] = dfAscending["일자"]
@@ -688,8 +694,6 @@ class PurchaseVolumeAnalysis():
         df["240일추세_기타법인"] = dfAscending['매집수량_기타법인'].rolling(window=240).mean()
         df["240일추세_내외국인"] = dfAscending['매집수량_내외국인'].rolling(window=240).mean()
 
-        print('---------------------------------------------------------77777777777777777777777777777777777777777777777777')
-
         df = df.sort_index(ascending=False)
         df = df.fillna(0)
 
@@ -705,7 +709,7 @@ class PurchaseVolumeAnalysis():
         # print('len(df.columns) : ', len(df.columns))
 
         for i in range(len(df.columns)):
-            print(column_idx_lookup[i])
+            # print(column_idx_lookup[i])
             for j in range(len(df.index)):
                 item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]), 2)))
                 dpWidget.setItem(j, i, item)
@@ -714,8 +718,6 @@ class PurchaseVolumeAnalysis():
 
         dpWidget.resizeColumnsToContents()
         dpWidget.resizeRowsToContents()
-
-        print("검증...")
 
         return df
 
@@ -750,7 +752,7 @@ class PurchaseVolumeAnalysis():
             print('dpWidget : ')
             print(dpWidget)
 
-        print(dfS0796CumData)
+        # print(dfS0796CumData)
 
         columns = ['일자','주가',
                     '분산_개인', '분산_외국인', '분산_외국인기관', '분산_금융투자', '분산_보험', '분산_투신', '분산_기타금융', '분산_은행', '분산_연기금', '분산_사모펀드', '분산_국가', '분선_기타법인', '분산_내외국인']
@@ -791,7 +793,7 @@ class PurchaseVolumeAnalysis():
         # print('len(df.columns) : ', len(df.columns))
 
         for i in range(len(df.columns)):
-            print(column_idx_lookup[i])
+            # print(column_idx_lookup[i])
             for j in range(len(df.index)):
                 item: QTableWidgetItem = QTableWidgetItem(str(round(float(df[column_idx_lookup[i]][j]), 2)))
                 dpWidget.setItem(j, i, item)
@@ -837,14 +839,14 @@ class PurchaseVolumeAnalysis():
 
 
         # 년   - from~to :  240일
-        print("전체크기", len(dfS0796))
+        # print("전체크기", len(dfS0796))
         
         weekCnt = len(dfS0796) / 5
         monthCnt = len(dfS0796) / 20
         bungiCnt = len(dfS0796) / 60
         yearCnt = len(dfS0796) / 240
 
-        print(weekCnt,monthCnt,bungiCnt,yearCnt)
+        # print(weekCnt,monthCnt,bungiCnt,yearCnt)
 
         columnsList = ['일자', '현재가', '누적거래량', '개인투자자', '세력합' , '외국인투자자', '금융투자', '보험', '투신', '기타금융', '은행', '연기금등', '사모펀드', '국가', '기타법인', '내외국인']
 
@@ -1155,8 +1157,8 @@ class PurchaseVolumeAnalysis():
 
         df = pd.concat(dataFList)
         
-        print('00000000000000000000000000000000000000000000000000000')
-        print(df)
+        # print('00000000000000000000000000000000000000000000000000000')
+        # print(df)
 
 
         # QTableWidget 에 데이터 표시하기
@@ -1166,7 +1168,7 @@ class PurchaseVolumeAnalysis():
 
 
         for i in range(len(df.columns)):
-            print(column_idx_lookup[i])
+            # print(column_idx_lookup[i])
             for j in range(len(df.index)):
                 item: QTableWidgetItem = QTableWidgetItem(str( df[column_idx_lookup[i]][j]    ))
                 dpWidget.setItem(j, i, item)
@@ -1175,7 +1177,7 @@ class PurchaseVolumeAnalysis():
 
         dpWidget.resizeColumnsToContents()
         dpWidget.resizeRowsToContents()
-        print("End----------------------------------------------------------------")
+        # print("End----------------------------------------------------------------")
 
         return df
 
@@ -1208,44 +1210,71 @@ class PurchaseVolumeAnalysis():
 
         return [col0, col1[0], col2[0], col3[0], col4[0], col5[0], col6[0], col7[0], col8[0], col9[0], col10[0], col11[0], col12[0], col13[0], col14[0],col15[0]]
 
-    def drawDist(self, df = None , drawLayout = None):
+    def drawDist(self, df0796 = None , drawLayout = None):
 
-        df = df.sort_index(ascending=True)
+        font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/HMFMOLD.TTF").get_name()
+        rc('font', family=font_name)
 
-        self.fig = plt.Figure(figsize=(200, 100))
+        # fig = plt.figure(figsize=(12, 8))
+        #
+        # top_axes = plt.subplot2grid((4, 4), (0, 0), rowspan=3, colspan=4)
+        # bottom_axes = plt.subplot2grid((4, 4), (3, 0), rowspan=1, colspan=4)
+        # bottom_axes.get_yaxis().get_major_formatter().set_scientific(False)
+        #
+        # top_axes.plot(df.index, df['분산_개인'], label='Adjusted Close')
+        # bottom_axes.plot(df.index, df['분산_외국인'])
+        #
+        # plt.tight_layout()
+        # plt.show()
+
+        df = df0796.sort_index(ascending=True)['20000105' : '20200730']
+
+        # plt.rcParams['figure.figsize'] = (10, 5)
+        plt.rcParams['font.size'] = 15
+
+        self.fig = plt.Figure(figsize=(48, 10))
         self.canvas = FigureCanvas(self.fig)
 
         drawLayout.addWidget(self.canvas)
 
         ax = self.fig.add_subplot(111)
 
-        ax.plot( df["분산_개인"], label='1')
-        # ax.plot( df["분산_외국인"], label='2')
-        # ax.plot(df["분산_금융투자"], label='3')
-        # ax.plot(df.index, df["분산_보험"], label='보험')
-        # ax.plot(df.index, df["분산_투신"], label='투신')
-        # ax.plot(df.index, df["분산_기타금융"], label='기타금융')
-        # ax.plot(df.index, df["분산_은행"], label='은행')
-        # ax.plot(df.index, df["분산_연기금"], label='연기금')
-        # ax.plot(df.index, df["분산_사모펀드"], label='사모펀드')
-        # ax.plot(df.index, df["분산_국가"], label='국가')
-        # ax.plot(df.index, df["분선_기타법인"], label='기타법인')
-        # ax.plot(df.index, df["분산_내외국인"], label='내외국인')
+        axTwinx =  ax.twinx()
+
+
+        # mpl.rcParams['path.simplify'] = True
+        # mpl.rcParams['path.simplify_threshold'] = 1.0
+        # mpl.rcParams['agg.path.chunksize'] = 10000
+
+        axTwinx.plot(df["주가"].apply(np.abs), label='주가', color='k', linewidth = 2)
+        
+        ax.plot( df["분산_개인"], label='개인', color='g')
+        ax.plot( df["분산_외국인"], label='외국인', color='r')
+        ax.plot(df["분산_금융투자"], label='금융투자', color='b')
+        # # ax.plot(df.index, df["분산_보험"], label='보험')
+        # # ax.plot(df.index, df["분산_투신"], label='투신')
+        # # ax.plot(df.index, df["분산_기타금융"], label='기타금융')
+        # # ax.plot(df.index, df["분산_은행"], label='은행')
+        # # ax.plot(df.index, df["분산_연기금"], label='연기금')
+        # # ax.plot(df.index, df["분산_사모펀드"], label='사모펀드')
+        # # ax.plot(df.index, df["분산_국가"], label='국가')
+        # # ax.plot(df.index, df["분선_기타법인"], label='기타법인')
+        # # ax.plot(df.index, df["분산_내외국인"], label='내외국인')
+
+        ax.xaxis.set_major_locator(ticker.AutoLocator())
+        ax.xaxis.set_minor_locator(ticker.AutoMinorLocator())
+
+        # ax.xaxis.set_major_locator(ticker.FixedLocator([20190101,20200101]))
+        # ax.xaxis.set_minor_locator(ticker.FixedLocator(np.linspace(0,50,100)))
+
 
         ax.legend(loc='upper right')
+        axTwinx.legend(loc='upper left')
         ax.grid()
 
-        self.canvas.draw()
+        self.fig.tight_layout()
+        self.canvas.show()
 
-
-
-
-
-
-        self.canvas.draw()
-
-        print(df)
-        print(df.columns)
 
 if __name__ == "__main__":
     pass

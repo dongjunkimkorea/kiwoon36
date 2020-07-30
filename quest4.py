@@ -1,113 +1,25 @@
-from PyQt5.QtWidgets import  (QDialog, QCheckBox, QPushButton, QToolButton,
-                                QListWidget, QListWidgetItem, QLabel,
-                                QVBoxLayout, QHBoxLayout)
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QSize, Qt
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import font_manager, rc
+from matplotlib import style
 
-#import ActiveSet_rc
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc('font', family=font_name)
+# style.use('ggplot')
 
-class ActiveSetDialog(QDialog):
-    def __init__(self,parent=None):
-        super().__init__(parent)
-        showSetCB = QCheckBox("Show SelectedSet")
-        applyPB = QPushButton("&Apply")
-        closePB = QPushButton("&Close")
+industry = ['통신업', '의료정밀', '운수창고업', '의약품', '음식료품', '전기가스업', '서비스업', '전기전자', '종이목재', '증권']
+fluctuations = [1.83, 1.30, 1.30, 1.26, 1.06, 0.93, 0.77, 0.68, 0.65, 0.61]
 
-        toActiveTB = QToolButton()
-        toActiveTB.setIcon(QIcon(":/images/forward.png"))
-        toActiveTB.setIconSize(QSize(32,32))
-        toActiveTB.setAutoRaise(True)
+fig = plt.figure(figsize=(15, 8))
+ax = fig.add_subplot(111)
 
-        toInactiveTB = QToolButton()
-        toInactiveTB.setIcon(QIcon(":/images/backward.png"))
-        toInactiveTB.setIconSize(QSize(32,32))
-        toInactiveTB.setAutoRaise(True)
+ypos = np.arange(10)
+rects = plt.barh(ypos, fluctuations, align='center', height=0.8)
+plt.yticks(ypos, industry)
 
-        self.inactiveSetLW = QListWidget()
-        self.inactiveSetLW.setAlternatingRowColors(True)
+for i, rect in enumerate(rects):
+    ax.text(0.95 * rect.get_width(), rect.get_y() + rect.get_height() / 2.0, str(fluctuations[i]) + '%', ha='right', va='center')
 
-        self.inactiveSetLW.addItem("Set 1")
-        self.inactiveSetLW.addItem("Set 2")
-        self.inactiveSetLW.addItem("Set 3")
-        self.inactiveSetLW.addItem("Set 4")
-
-        self.activeSetLW = QListWidget()
-        self.activeSetLW.setAlternatingRowColors(True)
-
-        self.activeSetLW.addItem("Set 10")
-        self.activeSetLW.addItem("Set 11")
-        self.activeSetLW.addItem("Set 12")
-
-        inactiveLabel = QLabel("Inactive Set")
-        activeLabel = QLabel("Active Set")
-
-        left = QVBoxLayout()
-        left.addWidget(inactiveLabel)
-        left.addWidget(self.inactiveSetLW)
-
-        center = QVBoxLayout()
-        center.addStretch()
-        center.addWidget(toActiveTB)
-        center.addWidget(toInactiveTB)
-        center.addStretch()
-
-        right = QVBoxLayout()
-        right.addWidget(activeLabel)
-        right.addWidget(self.activeSetLW)
-
-        top = QHBoxLayout()
-        top.addLayout(left)
-        top.addLayout(center)
-        top.addLayout(right)
-
-        bottom = QHBoxLayout()
-        bottom.addWidget(showSetCB)
-        bottom.addStretch()
-        bottom.addWidget(applyPB)
-        bottom.addWidget(closePB)
-
-        mainLayout = QVBoxLayout()
-        mainLayout.addLayout(top)
-        mainLayout.addLayout(bottom)
-
-        self.setLayout(mainLayout)
-
-        # drag-drop setting
-        self.inactiveSetLW.setDragEnabled(True)
-        self.inactiveSetLW.viewport().setAcceptDrops(True)
-        #self.inactiveSetLW.setDropIndicatorShown(True)
-        self.inactiveSetLW.setDefaultDropAction(Qt.MoveAction)
-
-        self.activeSetLW.setDragEnabled(True)
-        self.activeSetLW.viewport().setAcceptDrops(True)
-        self.activeSetLW.setDropIndicatorShown(True)
-        self.activeSetLW.setDefaultDropAction(Qt.MoveAction)
-
-        # signal-slot
-        closePB.clicked.connect(self.close)
-        toActiveTB.clicked.connect(self.onToActiveSet)
-        toInactiveTB.clicked.connect(self.onToInactiveSet)
-
-    def onToActiveSet(self):
-        self.moveCurrentItem(self.inactiveSetLW,self.activeSetLW)
-
-    def onToInactiveSet(self):
-        self.moveCurrentItem(self.activeSetLW,self.inactiveSetLW)
-
-    def moveCurrentItem(self,source,target):
-
-        if source.currentItem() :
-            row = source.currentRow()
-            target.addItem(source.takeItem(row))
-
-
-from PyQt5.QtWidgets import QApplication
-import sys
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    dialog = ActiveSetDialog()
-    dialog.show()
-
-    app.exec_()
+plt.xlabel('등락률')
+plt.tight_layout()
+plt.show()

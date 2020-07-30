@@ -220,7 +220,11 @@ QHeaderView::section {background-color:#404040;color:#FFFFFF;}</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <layout class="QVBoxLayout" name="graph_1_layout"/>
+           <layout class="QVBoxLayout" name="graph_1_layout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+           </layout>
           </item>
          </layout>
         </widget>
